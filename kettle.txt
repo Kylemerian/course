@@ -1,0 +1,108 @@
+type:Int
+type:Char
+type:Unit
+type:Bool
+type:Nat
+type:Real
+type:Text
+type:char
+type:unsigned char
+type:signed char
+type:short
+type:unsigned short
+type:int
+type:long
+type:unsigned
+type:unsigned long
+type:long long
+type:unsigned long long
+type:int8_t
+type:uint8_t
+type:int16_t
+type:uint16_t
+type:int32_t
+type:uint32_t
+type:int64_t
+type:uint64_t
+type:float
+type:double
+type:void
+type:VOID
+type:Undefined
+type:Universe
+object:Object
+object:Kettle
+  objattr:Water
+  objattr:Switch
+  objattr:Timer
+object:AddWater_Frame
+  objattr:delta
+  objattr:$location
+  objattr:$subframe
+object:RemoveWater_Frame
+  objattr:$location
+  objattr:$subframe
+object:SwitchOn_Frame
+  objattr:$location
+  objattr:$subframe
+object:SwitchOff_Frame
+  objattr:$location
+  objattr:$subframe
+object:Ticking_Frame
+  objattr:$location
+  objattr:$subframe
+fgraph:AddWater
+[AddWater_start_finish_1]
+guards:
+  frame.$location = 0
+  Water = 0
+  frame.delta ≥ 0 и frame.delta ≤ 100
+wds:
+  
+actions:
+  Water := frame.delta
+  frame.$location := -1
+fgraph:RemoveWater
+[RemoveWater_start_finish_1]
+guards:
+  frame.$location = 0
+  Water > 0
+wds:
+  
+actions:
+  Water := 0
+  frame.$location := -1
+fgraph:SwitchOn
+[SwitchOn_start_finish_1]
+guards:
+  frame.$location = 0
+  Switch = False
+  Water > 0
+wds:
+  
+actions:
+  Switch := True
+  Timer := 10
+  frame.$location := -1
+fgraph:SwitchOff
+[SwitchOff_start_finish_1]
+guards:
+  frame.$location = 0
+  Switch = True
+  Timer = 1
+wds:
+  
+actions:
+  Switch := False
+  Timer := 0
+  frame.$location := -1
+fgraph:Ticking
+[Ticking_start_finish_1]
+guards:
+  frame.$location = 0
+  Timer > 1
+wds:
+  
+actions:
+  Timer := Timer-1
+  frame.$location := -1
