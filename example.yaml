@@ -1,96 +1,104 @@
 -
-    unique_frame: 1
+    unique_frame: 0
     cpu : 1
-    local_frame : 1
+    local_frame : 0
     event: AddWater
     object : Kettle
     frame.delta: 20
     frame.$location: 0
     frame.$subframe: 0
 -
-    unique_frame: 2
+    unique_frame: 1
     cpu : 1
-    local_frame : 2    
+    local_frame : 1
     event: SwitchOn
     object : Kettle
     frame.$location: 0
     frame.$subframe: 0
 - 
-    unique_frame: 3
-    cpu : 1
-    local_frame : 3    
+    unique_frame: 2
+    cpu : 2
+    local_frame : 0
     event: Ticking
     object : Kettle
     frame.$location: 0
     frame.$subframe: 0
 - 
-    unique_frame: 4
-    cpu : 1
-    local_frame : 4    
+    unique_frame: 3
+    cpu : 3
+    local_frame : 0
     event: Ticking
     object : Kettle
     frame.$location: 0
     frame.$subframe: 0
 -
-    unique_frame: 5
-    cpu : 1
-    local_frame : 5    
+    unique_frame: 4
+    cpu : 4
+    local_frame : 0   
+    event: Ticking
+    object : Kettle
+    frame.$location: 0
+    frame.$subframe: 0
+- 
+    unique_frame: 12
+    cpu : 12
+    local_frame : 0
     event: Ticking
     object : Kettle
     frame.$location: 0
     frame.$subframe: 0
 - 
     unique_frame: 6
-    cpu : 1
-    local_frame : 6    
+    cpu : 6
+    local_frame : 0
     event: Ticking
     object : Kettle
     frame.$location: 0
     frame.$subframe: 0
 - 
     unique_frame: 7
-    cpu : 1
-    local_frame : 7    
+    cpu : 7
+    local_frame : 0   
     event: Ticking
     object : Kettle
     frame.$location: 0
     frame.$subframe: 0
 - 
     unique_frame: 8
-    cpu : 1
-    local_frame : 8    
+    cpu : 8
+    local_frame : 0
     event: Ticking
     object : Kettle
     frame.$location: 0
     frame.$subframe: 0
 - 
     unique_frame: 9
-    cpu : 1
-    local_frame : 9    
+    cpu : 9
+    local_frame : 0
     event: Ticking
     object : Kettle
     frame.$location: 0
     frame.$subframe: 0
 - 
     unique_frame: 10
-    cpu : 1
-    local_frame : 10   
-    event: Ticking
-    object : Kettle
-    frame.$location: 0
-    frame.$subframe: 0
-- 
-    unique_frame: 11
-    cpu : 1
-    local_frame : 11   
+    cpu : 10
+    local_frame : 0
     event: Ticking
     object : Kettle
     frame.$location: 0
     frame.$subframe: 0
 -
-    unique_frame: 12
-    cpu : 1
-    local_frame : 12   
+    unique_frame: 11
+    cpu : 11
+    local_frame : 0
+    event: SwitchOff
+    object : Kettle
+    frame.$location: 0
+    frame.$subframe: 0
+-
+    unique_frame: 5
+    cpu : 5
+    local_frame : 0
     event: RemoveWater
     object : Kettle
     frame.$location: 0
