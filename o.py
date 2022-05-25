@@ -5,6 +5,7 @@ import yaml
 import copy
 import re
 import os
+import sys
 from eliot import log_call, to_file
 to_file(open("out.log", "w"))
 
@@ -13,8 +14,6 @@ class Object:
     def __init__(self, name):
         self.objattr = dict()
         self.name = name
-
-
 
 
 class Fgraph:
@@ -42,13 +41,13 @@ events = dict()
 
 s = ""
 doc = ""
+correct = False
 
 def topObj():
     global s
     f = open("cacheObj", "r")
     f.readline()
     getline(f)
-    # print(s)
     while s != [''] and s[0] != "-":
         name = s[1]
         getline(f)
@@ -74,7 +73,6 @@ def popObj():
 
 
 def pushObj(val):
-    # print(val)
     f = open("cacheObj", "r")
     outfile = open("newObj", "a+")
     outfile.write("-\n")
@@ -133,7 +131,6 @@ def wdsParse(file, tmp):
         wdsParse(file, tmp)
 
 def actionParse(file, tmp):
-    #print("act enter: ", s)
     if s != [''] and s[0] != "fgraph":
         arr = list()
         arr.append(s[0].strip(" "))
@@ -143,7 +140,6 @@ def actionParse(file, tmp):
         actionParse(file, tmp)
 
 def nodeParse(file):
-    #print("node enter", s)
     if s != [''] and s[0] == "fgraph":
         tmp = Fgraph(s[1])
         name = s[1]
@@ -163,28 +159,13 @@ def getline(file):
     global s
     s = file.readline().strip("\n").split(":")
 
-def parse():
-    with open("kettle.txt", "r") as file:
+
+def parse(rekaFile):
+    with open(rekaFile, "r") as file:
         getline(file)
         typeParse(file)
         objParse(file)
         nodeParse(file)
-
-# def fillEvents(doc):
-#     for dict in doc:
-#         frame_id = dict["unique_frame"]
-#         cpu = dict["cpu"]
-#         local_frame = dict["local_frame"]
-#         event = dict["event"]
-#         obj = dict["object"]
-#         tmp = Object(event)
-#         for attr in objects[event + "_Frame"].objattr.items():
-#             tmp.objattr[attr[0].replace("frame.", "")] = dict["frame." + attr[0]]
-
-#         ev = Event(frame_id, cpu, local_frame, event, obj, tmp)
-#         if not(cpu in events):
-#             events[cpu] = list()    
-#         events[cpu].append(ev)
 
 
 def fillEvents(doc):
@@ -199,7 +180,6 @@ def fillEvents(doc):
             events[cpu]["max"] = int(frame_id)
         
 
-
 def convertStrToValue(s):
     if s == "True":
         return True
@@ -207,14 +187,12 @@ def convertStrToValue(s):
         return False
     return int(s)
 
+
 def checkGuards(event, objects):
-    print("CHECKING GDS")
     res = 1
     for gd in fgraphs[event.event].guards:
         for gdn in gd:
-            #print(gdn)
             if gdn[1] == "=":
-                #print("guard=")
                 if gdn[0].startswith("frame."):
                     s = gdn[0].replace("frame.", "")
                     if not(event.frame.objattr[s] == convertStrToValue(gdn[2])):
@@ -223,7 +201,6 @@ def checkGuards(event, objects):
                     if not(objects[event.obj].objattr[gdn[0]] == convertStrToValue(gdn[2])):
                         res = 0
             elif gdn[1] == "<=":
-                #print("guard<=")
                 if gdn[0].startswith("frame."):
                     s = gdn[0].replace("frame.", "")
                     if not(event.frame.objattr[s] <= convertStrToValue(gdn[2])):
@@ -232,7 +209,6 @@ def checkGuards(event, objects):
                     if not(objects[event.obj].objattr[gdn[0]] <= convertStrToValue(gdn[2])):
                         res = 0
             elif gdn[1] == ">=":
-                #print("guard>=")
                 if gdn[0].startswith("frame."):
                     s = gdn[0].replace("frame.", "")
                     if not(event.frame.objattr[s] >= convertStrToValue(gdn[2])):
@@ -241,7 +217,6 @@ def checkGuards(event, objects):
                     if not(objects[event.obj].objattr[gdn[0]] >= convertStrToValue(gdn[2])):
                         res = 0
             elif gdn[1] == ">":
-                #print("guard>")
                 if gdn[0].startswith("frame."):
                     s = gdn[0].replace("frame.", "")
                     if not(event.frame.objattr[s] > convertStrToValue(gdn[2])):
@@ -250,7 +225,6 @@ def checkGuards(event, objects):
                     if not(objects[event.obj].objattr[gdn[0]] > convertStrToValue(gdn[2])):
                         res = 0
             elif gdn[1] == "<":
-                #print("guard<")
                 if gdn[0].startswith("frame."):
                     s = gdn[0].replace("frame.", "")
                     if not(event.frame.objattr[s] < convertStrToValue(gdn[2])):
@@ -259,10 +233,8 @@ def checkGuards(event, objects):
                     if not(objects[event.obj].objattr[gdn[0]] < convertStrToValue(gdn[2])):
                         res = 0
             else:
-                print("wrong")
-    print("      passgd = ", res)
+                print("smth went wrong...")
     return res
-
 
 
 def findSuitEvents(tmpEvents):
@@ -280,40 +252,26 @@ def findSuitEvents(tmpEvents):
             for attr in objects[event + "_Frame"].objattr.items():
                 tmp.objattr[attr[0].replace("frame.", "")] = doc[item[1]["cur"]]["frame." + attr[0]]
             ev = Event(frame_id, cpu, local_frame, event, obj, tmp)
-            #print(frame_id, cpu, local_frame, event, obj, tmp, "SDFSIFFF")
             if checkGuards(ev, objects):
                 res.append(ev)
 
 
     return res
 
+
 def isValue(s):
     return s.isdigit() or s in ["True", "False"]
 
+
 def doActions(event, objs):
-    print("DOACTIONS")
     for act in fgraphs[event.event].actions:
         if act[0].startswith("frame."):
             t = act[0].replace("frame.", "")
             tt = act[1].replace("frame.", "")
-            #print("    ", act[0], event.frame.objattr[t])
             event.frame.objattr[t] = eval(tt, {}, {**event.frame.objattr, **objs[event.obj].objattr})
-            #print("    ", act[0], event.frame.objattr[t])
-            # if isValue(act[1].replace("-", "")):
-            #     #print(event.frame[t], int(act[1]))
-            #     event.frame.objattr[t] = convertStrToValue(act[1])
-            # else:
-            #     event.frame.objattr[t] = event.frame.objattr[act[1].replace("frame.", "")]
         else:
-            
-            # if isValue(act[1].replace("-", "")):
-            #     objs[event.obj].objattr[act[0]] = convertStrToValue(act[1])
-            # else:
-            #     objs[event.obj].objattr[act[0]] = event.frame.objattr[act[1].replace("frame.", "")]
-            print("    ", act[0], objs[event.obj].objattr[act[0]])
             tt = act[1].replace("frame.", "")
             objs[event.obj].objattr[act[0]] = eval(tt, {}, {**event.frame.objattr, **objs[event.obj].objattr})
-            print("    ", act[0], objs[event.obj].objattr[act[0]])
 
 
 def lenEvents(evs):
@@ -322,92 +280,54 @@ def lenEvents(evs):
         res += len(it[1])
     return res
 
-def setNextEvent(cpu, local, stepEvs):
-    print("MARK", stepEvs)
 
+def setNextEvent(cpu, local, stepEvs):
     for d in doc:
         if d["cpu"] == cpu and local + 1 == d["local_frame"]:
             stepEvs[cpu]["cur"] = d["unique_frame"]
 
-correct = 0
 
-@log_call
 def checkSeq(evs):
     global correct
-    #print events
     global objects
-    print("##############################CHECKING SEQ#######################")
-    for cpu in evs.items():
-        print(cpu, "CPUUUU")
-        print(cpu[0], "----------------------------------------------")
-        print("     ", end = "")
-        #for q in cpu[1].items():
-         #   print() #print(str(q[1]), "EWREER", end = " ")
-    print("-----------------------------------------------")
-    pushObj(objects)
-    step = findSuitEvents(evs)
     
-    print("!!!!!!!!!!STEP : ")
-    for i in step:
-        print("id=", i.unique_frame, "cpu=", i.cpu, i.event)
-    print("!!!!!!!!!!")
+    step = findSuitEvents(evs)
+    pushObj(objects)
 
     if len(step) == 0:
         if lenEvents(evs) == 0:
-            correct += 1
+            correct = True
     for ev in step:
-        if correct > 0:
+        if correct:
             break
         stepEvents = copy.deepcopy(evs)
-        # print(ev.event)
         topObj()
         doActions(ev, objects)
         if stepEvents[ev.cpu]["cur"] == stepEvents[ev.cpu]["max"]:
             del stepEvents[ev.cpu]
-        #delete event
         for it in stepEvents.items():
-            # print(it[1]["cur"], "ITITITITIT", ev.unique_frame)
             if ev.unique_frame == it[1]["cur"]:
                 setNextEvent(ev.cpu, ev.local_frame, stepEvents)
-
-        
         checkSeq(stepEvents)
     popObj()
 
-def checkTrace():
+
+def checkTrace(traceFile):
     global doc
-    with open('example.yaml', 'r') as file:
+    with open(traceFile, 'r') as file:
         doc = yaml.safe_load(file)
-    
+    f = open("cacheObj", "w")
+    f.write("-\n")
+    f.close()
     fillEvents(doc)
-    #print(events)
     checkSeq(events)
+    os.remove("cacheObj")
 
 
 if __name__ == "__main__":
-    parse()
-
-    # for i in types:
-    #     print(i)
-    
-    # for i in objects.items():
-    #     print(i[0])
-    #     for j in i[1].objattr.items():
-    #         print("  attr:", j[0], "=", j[1])
-
-    # for i in fgraphs.items():
-    #     print(i[0])
-    #     for j in i[1].guards:
-    #         print("  guard: ", j)
-    #     for j in i[1].wds:
-    #         print("  wds: ", j)
-    #     for j in i[1].actions:
-    #         print("  action: ", j)
-
-    checkTrace()
-    print("Is correct trace :", correct > 0)
-    # for cpu in events.items():
-    #     for ev in cpu[1]:
-    #         print(ev.unique_frame, ev.cpu, ev.local_frame, ev.event, ev.obj)
-    #         for attr in ev.frame.objattr.items():
-    #             print(attr)
+    if len(sys.argv) != 3:
+        print("USAGE: python3 o.py REKAFILE TRACEFILE")
+    else:
+        parse(sys.argv[1])
+        checkTrace(sys.argv[2])
+        print("Is correct trace :", correct > 0)
