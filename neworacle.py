@@ -8,14 +8,56 @@ import os
 import sys
 from eliot import log_call, to_file
 
-to_file(open("out.log", "w"))
+BIT8_DIV = 128
+MAX_INT8 = 127
+MIN_INT8 = -128
 
+BIT16_DIV = 32768
+MAX_INT16 = 32767
+MIN_INT16 = -32768
+
+BIT32_DIV = 2147483648
+MAX_INT32 = 2147483647
+MIN_INT32 = -2147483648
+
+BIT64_DIV = 9223372036854775808
+MAX_INT64 = 9223372036854775807
+MIN_INT64 = -9223372036854775808
+
+
+
+class VM:
+    def __init__(self):
+        self.classes = list()
+        self.methods = list()
+        self.fields = list()
+        self.threads = list()
+        self.threads.append(Thread())
+
+class Thread:
+    def __init__(self):
+        self.frames = list()
+        self.constpool = list()
+        self.exception = 0
+        self.frames.append(Frame())
+
+class Frame:
+    def __init__(self):
+        self.registers = dict()
+        self.registers['acc'] = Register()
+        self.registers['pc'] = Register()
+        for i in range(256):
+            self.registers['r' + str(i)] = Register()
+
+class Register:
+        def __init__(self):
+            self.value = 0
+            self._type = 0
 
 class Object:
     def __init__(self, name):
         self.objattr = dict()
         self.name = name
-
 
 class Fgraph:
     def __init__(self, name):
@@ -23,7 +65,6 @@ class Fgraph:
         self.guards = list()
         self.wds = list()
         self.name = name
-
 
 class Event:
     def __init__(self, u_frame, cpu, l_frame, event, obj, frame):
@@ -34,77 +75,31 @@ class Event:
         self.obj = obj
         self.frame = frame
 
-
-objects = dict()
+vm = VM()
 fgraphs = dict()
-types = list()
 events = dict()
-
-currentThread = 0
-currentFrame = 0
-
+objects = dict()
+types = list()
 
 s = ""
 doc = ""
 correct = False
 
-def topObj():
+def getline(file):
     global s
-    f = open("cacheObj", "r")
-    f.readline()
-    getline(f)
-    while s != [''] and s[0] != "-":
-        name = s[1]
-        getline(f)
-        while s != [''] and s[0] != "Object":
-            if s!= ['']:
-                print(s)
-                # objects[name].objattr[s[0]] = convertStrToValue(s[1])
-                objects[name].objattr[s[0]] = s[1]
-            getline(f)
-
-        
-def popObj():
-    tmp = open("tmp", "w")
-    f = open("cacheObj", "r")
-    f.readline()
-    line = f.readline()
-    while line != "-\n":
-        line = f.readline()
-    while line:
-        tmp.write(line)
-        line = f.readline()
-    f.close()
-    os.remove("cacheObj")
-    os.rename("tmp", "cacheObj")
-
-
-def pushObj(val):
-    f = open("cacheObj", "r")
-    outfile = open("newObj", "a+")
-    outfile.write("-\n")
-    for obj in val.items():
-        if (obj[0].endswith("_Frame")):
-           continue
-        outfile.write("Object:" + obj[0] + "\n")
-        for attr in obj[1].objattr.items():
-            outfile.write(attr[0] + ":" + str(attr[1]) + "\n")
-    outfile.write("\n")
-    for line in f:
-        outfile.write(line)
-    f.close()
-    os.remove("cacheObj")
-    os.rename("newObj", "cacheObj")
+    s = file.readline().strip("\n").split(":")
 
 def typeParse(file):
     if s != [''] and s[0] == "type":
         types.append(s[1])
         getline(file)
+        print("#type :", s[1])
         typeParse(file)
 
 def objattrParse(file, obj):
     if s != [''] and s[0] == "  objattr":
         obj.objattr[(s[1])] = 0
+        print("objattr = ", s[1])
         getline(file)
         objattrParse(file, obj)
 
@@ -112,6 +107,7 @@ def objParse(file):
     if s != [''] and s[0] == "object":
         tmp = Object(s[1])
         name = s[1]
+        print("name =", s[1])
         getline(file)
         objattrParse(file, tmp)
         objects[name] = tmp
@@ -128,8 +124,11 @@ def guardParse(file, tmp):
             s[i] = s[i].split(" ")
             s[i] = list(filter(lambda x : x, s[i]))
         
-        print("guard = ", s)
-        tmp.guards.append(s)
+        # print("s = ", s, " len = ", len(s[0]))
+        if len(s[0]) == 3:
+            print("#guard = ", s)
+            tmp.guards.append(s)
+
         getline(file)
         guardParse(file, tmp)
 
@@ -137,8 +136,9 @@ def guardParse(file, tmp):
 def wdsParse(file, tmp):
     if s != [''] and s[0] != "actions":
         getline(file)
-        print("WDS = ", s)
+        print("#wds = ", s)
         wdsParse(file, tmp)
+
 
 def actionParse(file, tmp):
     if s != [''] and s[0] != "fgraph":
@@ -151,9 +151,10 @@ def actionParse(file, tmp):
         else:
             0 # print("action with simple text not added")
         tmp.actions.append(arr)
-        print("ACTION = ", arr)
+        print("#action = ", arr)
         getline(file)
         actionParse(file, tmp)
+
 
 def nodeParse(file):
     if s != [''] and s[0] == "fgraph":
@@ -176,16 +177,13 @@ def nodeParse(file):
         nodeParse(file)
 
 
-def getline(file):
-    global s
-    s = file.readline().strip("\n").split(":")
-
-
 def parse(rekaFile):
     with open(rekaFile, "r") as file:
         getline(file)
         typeParse(file)
+        print("#########")
         objParse(file)
+        print("#########")
         nodeParse(file)
 
 
@@ -274,6 +272,9 @@ def findSuitEvents(tmpEvents):
             obj = doc[item[1]["cur"]]["object"]
             tmp = Object(event)
             for attr in objects[event + "_Frame"].objattr.items():
+                print("tmp = ", tmp.name)
+                print("attr = ", tmp.objattr)
+
                 tmp.objattr[attr[0].replace("frame.", "")] = doc[item[1]["cur"]]["frame." + attr[0]]
             ev = Event(frame_id, cpu, local_frame, event, obj, tmp)
             if checkGuards(ev, objects):
@@ -283,36 +284,45 @@ def findSuitEvents(tmpEvents):
     return res
 
 
+def lenEvents(evs):
+    res = 0
+    for it in evs.items():
+        res += len(it[1])
+    return res
+
+
 def isValue(s):
     return s.isdigit() or s in ["True", "False"]
 
 
 def doActions(event, objs):
     for act in fgraphs[event.event].actions:
-        print(objs[event.obj].objattr['threads'])
-        print(objs[event.obj].objattr['threads'][0]['frames'][0]['acc']['value'])
-        acc = objs['VM'].objattr['threads'][0]['frames'][0]['acc']['value']
-        globaldict = dict()
-        globaldict['acc'] = objs['VM'].objattr['threads'][0]['frames'][0]['acc']['value']
+        # globaldict = dict()
+        # acc = vm.threads[0].frames[0].acc
+        # print(vm.threads[0].frames[0].acc.value, " =acc")
+        # globaldict['acc'] = acc
+        print("ACC = ", vm.threads[0].frames[0].registers['acc'].value)
 
         if act[0].startswith("frame."):
             t = act[0].replace("frame.", "")
             tt = act[1].replace("frame.", "")
-            print("to ACT =", tt)
+            print("to ACT =", t, " ", tt)
             print("Attributes:", event.frame.objattr)
             print("All objs:", objs[event.obj].objattr)
-            event.frame.objattr[t] = eval(tt, globaldict, {**event.frame.objattr, **objs[event.obj].objattr})
+            print("t = ", t)
+            event.frame.objattr[t] = eval(tt, vm.threads[0].frames[0].registers, {**event.frame.objattr, **objs[event.obj].objattr})
         else:
+            print(act[1])
             tt = act[1].replace("frame.", "")
+            tt = tt.replace(".value", "")
+            tt = tt.replace("acc", "acc.value")
             print("doACTION = ", tt)
-            objs[event.obj].objattr[act[0]] = eval(tt, globaldict, {**event.frame.objattr, **objs[event.obj].objattr})
+            print("OBJS", {**event.frame.objattr, **objs[event.obj].objattr})
+            # print("REWRITE", objs[event.obj].objattr[act[0]] )
+            print("QQQ = ", vm.threads[0].frames[0].registers[act[0].replace(".value", "")])
+            # objs[event.obj].objattr[act[0]] = eval(tt, vm.threads[0].frames[0].registers, {**event.frame.objattr, **objs[event.obj].objattr})
+            vm.threads[0].frames[0].registers[act[0].replace(".value", "")].value = eval(tt, vm.threads[0].frames[0].registers, {**event.frame.objattr, **objs[event.obj].objattr})
 
-
-def lenEvents(evs):
-    res = 0
-    for it in evs.items():
-        res += len(it[1])
-    return res
 
 
 def setNextEvent(cpu, local, stepEvs):
@@ -335,7 +345,7 @@ def checkSeq(evs):
         if correct:
             break
         stepEvents = copy.deepcopy(evs)
-     #   topObj()
+    #   topObj()
         doActions(ev, objects)
         if stepEvents[ev.cpu]["cur"] == stepEvents[ev.cpu]["max"]:
             del stepEvents[ev.cpu]
@@ -343,8 +353,7 @@ def checkSeq(evs):
             if ev.unique_frame == it[1]["cur"]:
                 setNextEvent(ev.cpu, ev.local_frame, stepEvents)
         checkSeq(stepEvents)
-    popObj()
-
+    #popObj()
 
 def checkTrace(traceFile):
     global doc
@@ -357,46 +366,11 @@ def checkTrace(traceFile):
     checkSeq(events)
     os.remove("cacheObj")
 
-def initObjects():
-    # for key in objects.keys():
-    #     print(key, " ::: ")
-    #     print(objects[key].objattr)
-    
-    
-    
-    regList = list()
-    for _ in range(256):
-        regList.append(dict(value=0, _type=0))
-    newFrame = dict(registers=regList, acc=dict(value=0, _type=0), pc=dict(value=0, _type=0))
-    frames = list()
-    frames.append(newFrame)
-
-    newThread = dict(frames=frames, constpool=dict(), exception=0)
-    threads = list()
-    threads.append(newThread)
-    objects['VM'].objattr['threads'] = threads
-
-    
-    # for key in objects.keys():
-    #     print(key, " ::: ")
-    #     print(objects[key].objattr)
-    
-    print(objects['VM']
-        .objattr['threads'][0]
-        ['frames'][0]
-        ['acc']
-        ['value'])
-    0
-
-
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("USAGE: python3 o.py REKAFILE TRACEFILE")
+        print("python3 neworacle.py REKA TRACE")
     else:
         parse(sys.argv[1])
-
-        initObjects()
-
         checkTrace(sys.argv[2])
         print("Is correct trace :", correct > 0)

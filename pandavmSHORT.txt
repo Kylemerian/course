@@ -1,0 +1,675 @@
+type:Int
+type:Char
+type:Unit
+type:Bool
+type:Nat
+type:Real
+type:Text
+type:char
+type:unsigned char
+type:signed char
+type:short
+type:unsigned short
+type:int
+type:long
+type:unsigned
+type:unsigned long
+type:long long
+type:unsigned long long
+type:int8_t
+type:uint8_t
+type:int16_t
+type:uint16_t
+type:int32_t
+type:uint32_t
+type:int64_t
+type:uint64_t
+type:float
+type:double
+type:void
+type:VOID
+type:Undefined
+type:Universe
+type:Exception
+type:Abstype
+type:ref
+type:RegType
+object:Object
+object:VM
+  objattr:classes
+  objattr:methods
+  objattr:fields
+  objattr:threads
+object:Thread
+  objattr:frames
+  objattr:constpool
+  objattr:exception
+object:Frame
+  objattr:registers
+  objattr:acc
+  objattr:pc
+object:Register
+  objattr:value
+  objattr:_type
+object:Method
+  objattr:abstract
+  objattr:classid
+object:Clss
+  objattr:init
+  objattr:field
+object:movi_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:r2
+  objattr:$location
+  objattr:$subframe
+object:mov_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:r2
+  objattr:$location
+  objattr:$subframe
+object:mov_null_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:ldai_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:lda_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:lda_str_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:id
+  objattr:$location
+  objattr:$subframe
+object:lda_null_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:$location
+  objattr:$subframe
+object:sta_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:fneg_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:$location
+  objattr:$subframe
+object:neg_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:$location
+  objattr:$subframe
+object:not_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:$location
+  objattr:$subframe
+object:add2_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:add2_64_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:sub2_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:sub2_64_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:mul2_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:mul2_64_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:and2_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:and2_64_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:or2_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:or2_64_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:xor2_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:xor2_64_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:shl2_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:shl2_64_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:shr2_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:shr2_64_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:ashr2_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:ashr2_64_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:inci_Frame
+  objattr:v
+  objattr:t
+  objattr:f
+  objattr:r1
+  objattr:r2
+  objattr:$location
+  objattr:$subframe
+fgraph:movi
+[movi_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(frame.r1)
+actions:
+  frame.r1.value := frame.r2
+  frame.$location := -1
+fgraph:mov
+[mov_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+  valid(frame.r2)
+wds:
+  valid(frame.r2)
+  valid(frame.r1)
+actions:
+  frame.r1.value := frame.r2.value
+  frame.$location := -1
+fgraph:mov_null
+[mov_null_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(frame.r1)
+actions:
+  frame.r1.value := NULL
+  frame.$location := -1
+fgraph:ldai
+[ldai_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+wds:
+  valid(acc)
+actions:
+  acc.value := frame.r1
+  frame.$location := -1
+fgraph:lda
+[lda_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(frame.r1)
+  valid(acc)
+actions:
+  acc.value := frame.r1.value
+  frame.$location := -1
+fgraph:lda_str
+[lda_str_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+wds:
+  valid(frame.t)
+  valid(acc)
+actions:
+  acc.value := t.constpool(id)
+  frame.$location := -1
+fgraph:lda_null
+[lda_null_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+wds:
+  valid(acc)
+actions:
+  acc.value := NULL
+  frame.$location := -1
+fgraph:sta
+[sta_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(acc)
+  valid(frame.r1)
+actions:
+  frame.r1.value := acc.value
+  frame.$location := -1
+fgraph:fneg
+[fneg_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+wds:
+  valid(acc)
+actions:
+  acc.value := -acc.value
+  frame.$location := -1
+fgraph:neg
+[neg_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+wds:
+  valid(acc)
+actions:
+  acc.value := -acc.value
+  frame.$location := -1
+fgraph:not
+[not_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+wds:
+  valid(acc)
+actions:
+  acc.value := not(acc.value)
+  frame.$location := -1
+fgraph:add2
+[add2_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(frame.r1)
+  valid(acc)
+actions:
+  acc.value := (acc.value+frame.r1.value)%2147483648
+  frame.$location := -1
+fgraph:add2_64
+[add2_64_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(frame.r1)
+  valid(acc)
+actions:
+  acc.value := (acc.value+frame.r1.value)%BIT64_DIV
+  frame.$location := -1
+fgraph:sub2
+[sub2_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(frame.r1)
+  valid(acc)
+actions:
+  acc.value := (acc.value-frame.r1.value)%2147483648
+  frame.$location := -1
+fgraph:sub2_64
+[sub2_64_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(frame.r1)
+  valid(acc)
+actions:
+  acc.value := (acc.value-frame.r1.value)%BIT64_DIV
+  frame.$location := -1
+fgraph:mul2
+[mul2_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(frame.r1)
+  valid(acc)
+actions:
+  acc.value := (acc.value*frame.r1.value)%2147483648
+  frame.$location := -1
+fgraph:mul2_64
+[mul2_64_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(frame.r1)
+  valid(acc)
+actions:
+  acc.value := acc.value*frame.r1.value%BIT64_DIV
+  frame.$location := -1
+fgraph:and2
+[and2_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(acc)
+  valid(frame.r1)
+actions:
+  acc.value := and(r1.value,acc.value)%2147483648
+  frame.$location := -1
+fgraph:and2_64
+[and2_64_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(acc)
+  valid(frame.r1)
+actions:
+  acc.value := and(r1.value,acc.value)%BIT64_DIV
+  frame.$location := -1
+fgraph:or2
+[or2_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(acc)
+  valid(frame.r1)
+actions:
+  acc.value := or(r1.value,acc.value)%2147483648
+  frame.$location := -1
+fgraph:or2_64
+[or2_64_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(acc)
+  valid(frame.r1)
+actions:
+  acc.value := or(r1.value,acc.value)%BIT64_DIV
+  frame.$location := -1
+fgraph:xor2
+[xor2_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(acc)
+  valid(frame.r1)
+actions:
+  acc.value := xor(r1.value,acc.value)%2147483648
+  frame.$location := -1
+fgraph:xor2_64
+[xor2_64_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(acc)
+  valid(frame.r1)
+actions:
+  acc.value := xor(r1.value,acc.value)%BIT64_DIV
+  frame.$location := -1
+fgraph:shl2
+[shl2_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(frame.r1)
+  valid(acc)
+actions:
+  acc.value := shl(acc.value,r1.value)%2147483648
+  frame.$location := -1
+fgraph:shl2_64
+[shl2_64_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(frame.r1)
+  valid(acc)
+actions:
+  acc.value := shl(acc.value,r1.value)%BIT64_DIV
+  frame.$location := -1
+fgraph:shr2
+[shr2_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(frame.r1)
+  valid(acc)
+actions:
+  acc.value := shr(acc.value,r1.value)%2147483648
+  frame.$location := -1
+fgraph:shr2_64
+[shr2_64_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(frame.r1)
+  valid(acc)
+actions:
+  acc.value := shr(acc.value,r1.value)%BIT64_DIV
+  frame.$location := -1
+fgraph:ashr2
+[ashr2_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(frame.r1)
+  valid(acc)
+actions:
+  acc.value := ashr(acc.value,r1.value)%2147483648
+  frame.$location := -1
+fgraph:ashr2_64
+[ashr2_64_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(frame.r1)
+  valid(acc)
+actions:
+  acc.value := ashr(acc.value,r1.value)%BIT64_DIV
+  frame.$location := -1
+fgraph:inci
+[inci_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.v)
+  valid(frame.t)
+  valid(frame.f)
+  valid(frame.r1)
+wds:
+  valid(frame.r1)
+actions:
+  frame.r1.value := (frame.r1.value+frame.r2)%2147483648
+  frame.$location := -1

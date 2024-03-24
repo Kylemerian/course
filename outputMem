@@ -1,0 +1,43 @@
+	003d58	acc.pri 0-
+	v0.pri 0-
+	v1.pri 0-
+	v2.pri 0-
+	v3.pri 0-
+-
+	unique_frame: 1movi v0, 7	acc.pri 0-
+	v0.pri 7-
+	v1.pri 0-
+	v2.pri 0-
+	v3.pri 0-
+-
+	unique_frame: 2movi v1, 6	acc.pri 0-
+	v0.pri 7-
+	v1.pri 6-
+	v2.pri 0-
+	v3.pri 0-
+-
+	unique_frame: 3add v0, v1	acc.pri 13-
+	v0.pri 7-
+	v1.pri 6-
+	v2.pri 0-
+	v3.pri 0-
+-
+	unique_frame: 4movi v3, 13	acc.pri 13-
+	v0.pri 7-
+	v1.pri 6-
+	v2.pri 0-
+	v3.pri 13-
+-
+	unique_frame: 5jne v3, 6	acc.pri 13-
+	v0.pri 7-
+	v1.pri 6-
+	v2.pri 0-
+	v3.pri 13-
+-
+	unique_frame: 6ldai 0	acc.pri 0-
+	v0.pri 7-
+	v1.pri 6-
+	v2.pri 0-
+	v3.pri 13-
+-
+	unique_frame: 7return

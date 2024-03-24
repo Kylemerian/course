@@ -1,0 +1,89 @@
+-
+	cpu: 0
+	acc.pri: 0
+	v0.pri: 0
+	v1.pri: 0
+	v2.pri: 0
+	v3.pri: 0
+-
+	cpu: 0
+	unique_frame: 1
+	event: movi
+	todo: v0
+	todo: 7
+-
+	cpu: 0
+	acc.pri: 0
+	v0.pri: 7
+	v1.pri: 0
+	v2.pri: 0
+	v3.pri: 0
+-
+	cpu: 0
+	unique_frame: 2
+	event: movi
+	todo: v1
+	todo: 6
+-
+	cpu: 0
+	acc.pri: 0
+	v0.pri: 7
+	v1.pri: 6
+	v2.pri: 0
+	v3.pri: 0
+-
+	cpu: 0
+	unique_frame: 3
+	event: add
+	todo: v0
+	todo: v1
+-
+	cpu: 0
+	acc.pri: 13
+	v0.pri: 7
+	v1.pri: 6
+	v2.pri: 0
+	v3.pri: 0
+-
+	cpu: 0
+	unique_frame: 4
+	event: movi
+	todo: v3
+	todo: 13
+-
+	cpu: 0
+	acc.pri: 13
+	v0.pri: 7
+	v1.pri: 6
+	v2.pri: 0
+	v3.pri: 13
+-
+	cpu: 0
+	unique_frame: 5
+	event: jne
+	todo: v3
+	todo: 6
+-
+	cpu: 0
+	acc.pri: 13
+	v0.pri: 7
+	v1.pri: 6
+	v2.pri: 0
+	v3.pri: 13
+-
+	cpu: 0
+	unique_frame: 6
+	event: ldai
+	todo: 0
+-
+	cpu: 0
+	acc.pri: 0
+	v0.pri: 7
+	v1.pri: 6
+	v2.pri: 0
+	v3.pri: 13
+-
+	cpu: 0
+	unique_frame: 7
+	event: return
+-

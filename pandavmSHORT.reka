@@ -1,0 +1,559 @@
+module 'Абстрактные модели'
+  attr target_object: 'система'
+
+const BIT8_DIV : Int := 128
+const MAX_INT8 : Int := 127
+const MIN_INT8 : Int := -128
+
+const BIT16_DIV : Int := 32768
+const MAX_INT16 : Int := 32767
+const MIN_INT16 : Int := -32768
+
+const BIT32_DIV : Int := 2147483648
+const MAX_INT32 : Int := 2147483647
+const MIN_INT32 : Int := -2147483648
+
+const BIT64_DIV : Int := 9223372036854775808
+const MAX_INT64 : Int := 9223372036854775807
+const MIN_INT64 : Int := -9223372036854775808
+
+type Exception:
+enum
+    x_none
+    x_null
+    x_bounds
+    x_negsize
+    x_store
+    x_abstract
+    x_arith
+    x_cast
+    x_classdef
+    x_oom
+    x_init
+    x_call
+    x_throw
+    x_link
+is
+    **exceptions** - типы исключений
+end
+
+const NULL : void*
+
+type Abstype : Int | Real | ref
+
+object VM is
+**VM** - многопоточная регистровая виртуальная машина
+end
+objattr classes: Clss-list is
+**classes** - классы виртуальной машины
+end
+objattr methods: Method-list is
+**methods** - статические методы
+end
+objattr fields: Abstype-list is
+**fields** - статические поля
+end 
+objattr threads: Thread-list is
+**Threads** - список потоков виртуальной машины
+end
+endobject
+
+object Thread is
+**Thread** - поток виртуальной машины
+end
+objattr frames: Frame-list is
+**Frames** - список кадров потока виртуальной машины
+end
+objattr constpool : ref-list is
+**Constpool** - список констант
+end
+objattr exception: Exception := x_none is
+**Exception** - последнее исключение виртуальной машины
+end
+endobject
+
+object Frame is
+**Frame** - кадр
+end
+objattr registers: Register-list is
+**Registers** - список регистров кадра
+end
+objattr acc: Register is
+**Accumulator** - аккумулятор
+end
+objattr pc: Register is
+**PC** - регистр адреса команды
+end
+endobject
+
+type ref : void*
+
+
+object Register is
+**Register** - регистр общего назначения
+end
+objattr value: Int | Real | void* | ref is
+**value** - значение регистра
+end
+objattr _type: RegType
+endobject
+
+object Method is
+** Method ** - метод класса
+objattr numargs: Int is
+** кол-во аргументов метода **
+end
+objattr abstract: Bool is
+**abstract** - абстрактный ли метод
+end
+objattr classid: Int is
+**classid** - идентификатор класса
+end
+endobject
+
+object Clss is
+** Clss ** - класс
+objattr method: Method-list is
+**method** - методы класса
+end
+objattr init: Method is
+**init** - инициализатор класса
+end
+objattr field: Abstype-list is
+**field** - поля класса
+end 
+endobject
+
+
+
+type RegType:
+enum
+    i8
+    i16
+    i32
+    i64
+    u1
+    u8
+    u16
+    u32
+    u64
+    f32
+    f64
+is
+**RegType** - тип регистра
+end
+
+logical to_int32_ptr
+params
+    T @TYPE
+    r @IN : T*
+    ret @OUT : Int*
+function
+    * to int ptr *
+end
+
+logical to_float_ptr
+params
+    T @TYPE
+    r @IN : T*
+    ret @OUT : Real*
+function
+    * to real ptr *
+end
+
+logical not
+params
+    r1 @IN : Int
+    ret @OUT : Int
+function
+    * инвертирует биты параметра и возвращает результат*
+end
+
+logical and
+params
+    r1 @IN : Int
+    r2 @IN : Int
+    ret @OUT : Int
+function
+    * выполняет побитовое умножение двух параметров и возвращает результат*
+end
+
+logical or
+params
+    r1 @IN : Int
+    r2 @IN : Int
+    ret @OUT : Int
+function
+    * выполняет побитовое сложение двух параметров и возвращает результат*
+end
+
+logical xor
+params
+    r1 @IN : Int
+    r2 @IN : Int
+    ret @OUT : Int
+function
+    * выполняет побитовое исключащее или двух параметров и возвращает результат*
+end
+
+logical shr
+params
+    r1 @IN : Int
+    r2 @IN : Int
+    ret @OUT : Int
+function
+    * выполняет побитовый сдвиг первого параметра на r2 битов вправо и возвращает результат*
+end
+
+logical shl
+params
+    r1 @IN : Int
+    r2 @IN : Int
+    ret @OUT : Int
+function
+    * выполняет побитовый сдвиг первого параметра на r2 битов влево и возвращает результат*
+end
+
+logical ashr
+params
+    r1 @IN : Int
+    r2 @IN : Int
+    ret @OUT : Int
+function
+    * выполняет арифметический побитовый сдвиг первого параметра на r2 битов вправо и возвращает результат*
+end
+
+logical sizeof
+params
+    T @IN @TYPE
+    ret @OUT : Int
+end
+    attr text: 'sizeof({T})'
+
+logical new_array
+params
+    size @IN : Int
+    r1 @IN : Int
+    ret @OUT : void*
+function
+    * создает массив длины r2 типа T, либо возвращает NULL при недостатке памяти *
+end
+
+logical len
+params
+    T @TYPE
+    r1 @IN : T*
+    ret @OUT : Int
+function
+    * возвращает длину массива *
+end
+
+event noop //пустой инструкции
+end
+
+event movi //помещении значения на регистр
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+    r2 @IN : Int | Real
+function
+    r1.value := r2
+end
+
+event mov //перемещении значений между регистрами
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+    r2 @IN : Register
+function
+    r1.value := r2.value
+end
+
+event mov_null // помещении null на регистр
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+function
+    r1.value := NULL
+end
+
+event ldai // помещении значения на аккумулятор
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Int | Real
+function
+    acc.value := r1
+end
+
+event lda // помещении значения регистра на аккумулятор
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+function
+    acc.value := r1.value
+end
+
+event lda_str
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    id @IN : Int
+function
+    acc.value := t.constpool(id)
+end
+
+
+
+event lda_null // помещении значение null на аккумулятор
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+function
+    acc.value := NULL
+end
+
+event sta // помещении значения аккумулятора на регистр
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+function
+    r1.value := acc.value
+end
+
+
+
+event fneg // смене знака float значения аккумулятора
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+function
+    acc.value := -acc.value
+end
+
+event neg // смене знака целочисленного значения аккумулятора
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+function
+    acc.value := -acc.value
+end
+
+event not // инвертировании битов значения аккумулятора
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+function
+    acc.value := not(acc.value)     
+end
+
+event add2 // целочисленном сложении аккумулятора и регистра (32-битной разрядности)
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+function
+    acc.value := (acc.value + r1.value) % BIT32_DIV
+end
+
+event add2_64 // целочисленном сложении аккумулятора и регистра (64-битной разрядности)
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+function
+    acc.value := (acc.value + r1.value) % BIT64_DIV
+end
+
+event sub2 // целочисленном вычитании аккумулятора и регистра (32-битной разрядности)
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+function
+    acc.value := (acc.value - r1.value) % BIT32_DIV
+end
+
+event sub2_64 // целочисленном вычитании аккумулятора и регистра (64-битной разрядности)
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+function
+    acc.value := (acc.value - r1.value) % BIT64_DIV
+end
+
+event mul2 // целочисленном умножении аккумулятора и регистра (32-битной разрядности)
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+function
+    acc.value := (acc.value * r1.value) % BIT32_DIV
+end
+
+event mul2_64 // целочисленном умножении аккумулятора и регистра (64-битной разрядности)
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+function
+    acc.value := (acc.value * r1.value) % BIT64_DIV
+end
+
+event and2
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+function
+    acc.value := and(r1.value, acc.value) % BIT32_DIV
+end
+
+event and2_64
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+function
+    acc.value := and(r1.value, acc.value) % BIT64_DIV
+end
+
+event or2
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+function
+    acc.value := or(r1.value, acc.value) % BIT32_DIV
+end
+
+event or2_64
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+function
+    acc.value := or(r1.value, acc.value) % BIT64_DIV
+end
+
+event xor2
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+function
+    acc.value := xor(r1.value, acc.value) % BIT32_DIV
+end
+
+event xor2_64
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+function
+    acc.value := xor(r1.value, acc.value) % BIT64_DIV
+end
+
+event shl2
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+function
+    acc.value := shl(acc.value, r1.value) % BIT32_DIV
+end
+
+event shl2_64
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+function
+    acc.value := shl(acc.value, r1.value) % BIT64_DIV
+end
+
+event shr2
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+function
+    acc.value := shr(acc.value, r1.value) % BIT32_DIV
+end
+
+event shr2_64
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+function
+    acc.value := shr(acc.value, r1.value) % BIT64_DIV
+end
+
+event ashr2
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+function
+    acc.value := ashr(acc.value, r1.value) % BIT32_DIV
+end
+
+event ashr2_64
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN : Register
+function
+    acc.value := ashr(acc.value, r1.value) % BIT64_DIV
+end
+
+
+event inci // инкрементировании значения регистра на целочисленную константу
+params
+    v @IN : VM
+    t @IN : Thread
+    f @IN : Frame
+    r1 @IN: Register
+    r2 @IN : Int
+function
+    r1.value := (r1.value + r2) % BIT32_DIV
+end
+
+
+endmodule
