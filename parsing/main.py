@@ -4,9 +4,10 @@ import sys
 from tracing import *
 
 o = parseFile(sys.argv[1])
-o.print()
+# o.print()
 
-t = EventMap(sys.argv[2])
-t.setObjects(o.getObjs())
+t = EventMap(sys.argv[2], o.getObjs(), o.getEvents())
+# t.setObjects(o.getObjs())
 t.fillEvents()
+t.findSuitableEvent()
 t.print()

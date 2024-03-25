@@ -13,7 +13,7 @@ def getline(file):
     tmp = file.readline().strip("\n").split(":")
     return tmp
 
-
+# парсинг файла графа
 class parseFile:
     def __init__(self, file):
         self.file = file
@@ -60,16 +60,19 @@ class typeParse:
     def getTypes(self):
         return self.data
 
+# класс для объектов графа obj + objAttributes
+class Object:
+    def __init__(self, name):
+        self.objAttr = dict()
+        self.name = name
+        
+    def print(self):
+        print(self.name)
+        print(f'\t{self.objAttr}')
 
+
+# парсинг объектов графа
 class objParse:
-    class Object:
-        def __init__(self, name):
-            self.objAttr = dict()
-            self.name = name
-            
-        def print(self):
-            print(self.name)
-            print(f'\t{self.objAttr}')
     
     def __init__(self, file):
         self.file = file
@@ -78,7 +81,7 @@ class objParse:
     
     def parse(self):
         if self.buff != [''] and self.buff[0] == "object":
-            tmp = self.Object(self.buff[1])
+            tmp = Object(self.buff[1])
             name = self.buff[1]
             # print("name =", self.buff[1])
             self.buff = getline(self.file)
@@ -104,8 +107,9 @@ class objParse:
     def getBuff(self):
         return self.buff
 
-
+# парсит ивенты графа
 class eventParse:
+    #############################
     class event:
         def __init__(self, name):
             self.name = name
@@ -122,6 +126,7 @@ class eventParse:
             for x in self.actions:
                 print(f'\t{x}')
             print('-' * 10)
+ #################################           
     
     def __init__(self, file):
         self.file = file
