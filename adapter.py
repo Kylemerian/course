@@ -2,16 +2,32 @@ import os
 import sys
 import yaml
 import re
+from parsing.parse import *
 
 output = open("output", "w")
 output.write("-\n")
 
+# local_frame-ы
 frames = dict()
+# маппинг между реальными thread-id и искусственными cpu-id
 cpus = dict()
-frame_num = 0
+# unique frames cnt
+cpus[-1] = -1
 
-def todo():
-    return "todo: "
+
+def printArgs(eventName, cmd):
+    global output
+    evProts = o.getObjs()
+    curEvent = evProts[eventName + "_Frame"]
+    j = 0
+    for arg in curEvent.objAttr.items():
+        # pass
+        if j + 1 >= len(cmd):
+            value = 0
+        else:
+            value = cmd[j + 1]
+        output.write("    frame." + str(arg[0]) + ": " + str(value) + "\n")
+        j += 1
 
 # возвращает тип строки (pc counter str [pc]/ memory trace [mem]/ [unk] for other) 
 def instype(s):
@@ -27,25 +43,46 @@ tidFlag = 1
 
 
 def parsePC(s):
+    print(f"##### Parsing command")
     global tidFlag
-    global output, frame_num
+    global output, frame_num, cpus, frames
     s = s.replace(']', '').replace('[', '')
     s = s.split()
     tid = s[1]
     cmd = s[6:]
+    print("REAL TID = ", tid)
+    print("Command = ", cmd)
+    print("KNOWN CPUS: ", cpus)
+    print("Local frames dict:", frames)
     
+    # return statement
+    if cmd[0] == 'return':
+        return
     
-    frame_num += 1
+    cpus[-1] += 1
 
+    # if real thread is known then get mapped cpu id
     if tid in cpus:
-        tid = cpus[tid]
+        mappedCpuId = cpus[tid]
+        print("tid in cpus: ", tid)
+        # print(frames)
+        frames[mappedCpuId] += 1
+    # else save new ID
     else:
-        cpus[tid] = len(cpus)
-        tid = cpus[tid]  
+        print("size of known threads - 1 =", len(cpus) - 1)
+        cpus[tid] = len(cpus) - 1
+        print("size of known threads - 1 =", len(cpus) - 1)
+        mappedCpuId = cpus[tid]
+        # print(cpus[tid])
+        frames[mappedCpuId] = 0
+        
+    
+    local_frame = frames[mappedCpuId]
 
     output.write("-\n")
-    output.write("\t" + "cpu: " + str(tid) + "\n")
-    output.write("\tunique_frame: " + str(frame_num) + "\n")
+    output.write("    " + "cpu: " + str(mappedCpuId) + "\n")
+    output.write("    " + "local_frame: " + str(local_frame) + "\n")
+    output.write("    unique_frame: " + str(cpus[-1]) + "\n")
     
     tidFlag = 1
 
@@ -53,15 +90,18 @@ def parsePC(s):
     # res = "\t" + " ".join(cmd) + "\n"
     for i in range(len(cmd)):
         cmd[i] = cmd[i].replace(',', '')
-    output.write("\tevent: " + cmd[0] + "\n")
-    for i in range(len(cmd) - 1):
-        output.write("\t" + todo() + cmd[i + 1] + "\n")
-    output.write("-\n")
+
+    output.write("    event: " + cmd[0] + "\n")
+    printArgs(cmd[0], cmd)
+    # output.write("-\n")
+    print(f"##### End parsing cmd")
 
 
 def parseMem(s):
     global output, tidFlag
     
+    print(s)
+
     s = s.replace(']', '').replace('[', '')
     s = s.split()
     tid = s[1]
@@ -76,10 +116,10 @@ def parseMem(s):
         tid = cpus[tid] 
 
     
-    if tidFlag:
-        output.write("\t" + "cpu: " + str(tid) + "\n")
+    # if tidFlag:
+    #     output.write("    " + "cpu: " + str(tid) + "\n")
     tidFlag = 0
-    output.write("\t" + reg + ": " + value + "\n")
+    output.write("    " + reg + ": " + value + "\n")
     
 
 
@@ -102,8 +142,11 @@ def adapt(tracefile):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("python3 adapter.py TRACEFILE")
+    global o
+    if len(sys.argv) != 3:
+        print("python3 adapter.py TRACEFILE REKAFILE")
     else:
         # print(sys.argv[1])
+        o = parseFile(sys.argv[2])
+        # o.print()
         adapt(sys.argv[1])

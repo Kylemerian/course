@@ -134,7 +134,7 @@ class eventParse:
         self.data = dict()
     
     def parse(self):
-        # print(self.buff)
+        # print(self.data)
         if self.buff != [''] and self.buff[0] == "fgraph":
             tmp = self.event(self.buff[1])
             name = self.buff[1]
@@ -200,7 +200,3 @@ class eventParse:
     
     def getEvents(self):
         return self.data
-
-    
-
-# print(o.getObjs())
