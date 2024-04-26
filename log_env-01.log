@@ -1,0 +1,32 @@
+[TID 004fc8] D/interpreter: Invoke entry: _GLOBAL::main
+[TID 004fc8] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 004fc8] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 004fc8] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 004fc8] D/interpreter:      v2.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 004fc8] D/interpreter:      v3.obj = c0078
+[TID 004fc8] D/interpreter:  pc: 0x7f01f4f5b118 ---> lenarr v3
+[TID 004fc8] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 004fc8] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 004fc8] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 004fc8] D/interpreter:      v2.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 004fc8] D/interpreter:      v3.obj = c0078
+[TID 004fc8] D/interpreter:  pc: 0x7f01f4f5b11a ---> subi 2
+[TID 004fc8] D/interpreter:      acc.pri = (i64) 4294967294 | (f32) -nan | (f64) 2.122e-314 | (hex) fffffffe
+[TID 004fc8] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 004fc8] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 004fc8] D/interpreter:      v2.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 004fc8] D/interpreter:      v3.obj = c0078
+[TID 004fc8] D/interpreter:  pc: 0x7f01f4f5b11c ---> jnez 40
+[TID 004fc8] D/interpreter:      acc.pri = (i64) 4294967294 | (f32) -nan | (f64) 2.122e-314 | (hex) fffffffe
+[TID 004fc8] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 004fc8] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 004fc8] D/interpreter:      v2.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 004fc8] D/interpreter:      v3.obj = c0078
+[TID 004fc8] D/interpreter:  pc: 0x7f01f4f5b144 ---> ldai 1
+[TID 004fc8] D/interpreter:      acc.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 004fc8] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 004fc8] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 004fc8] D/interpreter:      v2.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 004fc8] D/interpreter:      v3.obj = c0078
+[TID 004fc8] D/interpreter:  pc: 0x7f01f4f5b146 ---> return
+[TID 004fc8] D/interpreter: Invoke exit: _GLOBAL::main

@@ -1,0 +1,177 @@
+[TID 0038b0] D/interpreter: Invoke entry: _GLOBAL::main
+[TID 0038b0] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0038b0] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0038b0] D/interpreter:      v4.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce154 ---> movi v0, 10
+[TID 0038b0] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0038b0] D/interpreter:      v0.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0038b0] D/interpreter:      v4.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce157 ---> movi v1, 20
+[TID 0038b0] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0038b0] D/interpreter:      v0.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0038b0] D/interpreter:      v4.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce15a ---> movi v2, 30
+[TID 0038b0] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0038b0] D/interpreter:      v0.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0038b0] D/interpreter:      v4.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce15d ---> movi v3, 40
+[TID 0038b0] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0038b0] D/interpreter:      v0.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:      v4.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce160 ---> initobj id0, v0, v1, v2, v3
+[TID 0038b0] D/interpreter:      acc.obj = 100088
+[TID 0038b0] D/interpreter:      v0.obj = 100088
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v4.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce196 ---> lda v1
+[TID 0038b0] D/interpreter:      acc.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v0.obj = 100088
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v4.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce198 ---> stobj v0, id0
+[TID 0038b0] D/interpreter:      acc.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v0.obj = 100088
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v4.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce19c ---> lda v2
+[TID 0038b0] D/interpreter:      acc.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v0.obj = 100088
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v4.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce19e ---> stobj v0, id1
+[TID 0038b0] D/interpreter:      acc.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v0.obj = 100088
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v4.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce1a2 ---> lda v3
+[TID 0038b0] D/interpreter:      acc.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v0.obj = 100088
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v4.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce1a4 ---> stobj v0, id2
+[TID 0038b0] D/interpreter:      acc.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v0.obj = 100088
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v4.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce1a8 ---> lda v4
+[TID 0038b0] D/interpreter:      acc.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:      v0.obj = 100088
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v4.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce1aa ---> stobj v0, id3
+[TID 0038b0] D/interpreter:      acc.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:      v0.obj = 100088
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v4.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce1ae ---> return.void
+[TID 0038b0] D/interpreter:      acc.obj = 100088
+[TID 0038b0] D/interpreter:      v0.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:      v4.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce165 ---> sta.obj v4
+[TID 0038b0] D/interpreter:      acc.obj = 100088
+[TID 0038b0] D/interpreter:      v0.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:      v4.obj = 100088
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce167 ---> ldobj v4, id0
+[TID 0038b0] D/interpreter:      acc.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v0.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:      v4.obj = 100088
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce16b ---> jne v0, 27
+[TID 0038b0] D/interpreter:      acc.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v0.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:      v4.obj = 100088
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce16e ---> ldobj v4, id1
+[TID 0038b0] D/interpreter:      acc.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v0.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:      v4.obj = 100088
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce172 ---> jne v1, 23
+[TID 0038b0] D/interpreter:      acc.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v0.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:      v4.obj = 100088
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce175 ---> ldobj v4, id2
+[TID 0038b0] D/interpreter:      acc.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v0.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:      v4.obj = 100088
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce179 ---> jne v2, 19
+[TID 0038b0] D/interpreter:      acc.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v0.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:      v4.obj = 100088
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce17c ---> ldobj v4, id3
+[TID 0038b0] D/interpreter:      acc.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:      v0.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:      v4.obj = 100088
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce180 ---> jne v3, 15
+[TID 0038b0] D/interpreter:      acc.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:      v0.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:      v4.obj = 100088
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce183 ---> ldai 0
+[TID 0038b0] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0038b0] D/interpreter:      v0.pri = (i64) 10 | (f32) 1.4013e-44 | (f64) 4.94066e-323 | (hex) a
+[TID 0038b0] D/interpreter:      v1.pri = (i64) 20 | (f32) 2.8026e-44 | (f64) 9.88131e-323 | (hex) 14
+[TID 0038b0] D/interpreter:      v2.pri = (i64) 30 | (f32) 4.2039e-44 | (f64) 1.4822e-322 | (hex) 1e
+[TID 0038b0] D/interpreter:      v3.pri = (i64) 40 | (f32) 5.60519e-44 | (f64) 1.97626e-322 | (hex) 28
+[TID 0038b0] D/interpreter:      v4.obj = 100088
+[TID 0038b0] D/interpreter:  pc: 0x7f2be3fce185 ---> return
+[TID 0038b0] D/interpreter: Invoke exit: _GLOBAL::main

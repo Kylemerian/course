@@ -1,0 +1,298 @@
+pandargs: Too many tail arguments
+
+Usage: panda [OPTIONS] [file] [entrypoint] -- [arguments]
+
+optional arguments:
+--abc-layout-profile-location: Specify the location of abc layout profile. Default: "/data/profile/"
+--aot-file: path to aot file. Default: ""
+--aot-files: List of aot files to be loaded. Default: []
+--aot-string-gc-roots-limit: Maximum amount of AOT string PLT-slots registered as GC roots. Default: 1000
+--aot-verify-abs-path: Use absolute path to panda files in Aot verification. Default: true
+--ark-aot: check if runtime start by ark_aot. Default: false
+--boot-class-spaces: Load specified class spaces. This option is for fine tuning. Use load-runtimes instead. Possible values: ["core", "ets"]. Default: ["core"]
+--boot-intrinsic-spaces: Load specified intrinsic spaces. This option is for fine tuning. Use load-runtimes instead. Possible values: ["core", "ets"]. Default: ["core", "ets"]
+--boot-panda-files: Boot panda files separated by colon. Default: ["$ORIGIN/../pandastdlib/arkstdlib.abc"]
+--call-profiling-table-size: Size of call profiling table size. Default: 1000
+--code-cache-size-limit: The limit for compiled code size.. Default: 33554432
+--compiler-adjust-refs: Enable hoisting of array data address. Default: true
+--compiler-allow-backend-failures: Ignore failures occurred during register allocation and code generation. Default: true
+--compiler-aot-load-string-plt: Replace unconditional ResolveString runtime call with loading string reference from PLT slot for AOT.. Default: true
+--compiler-aot-ra: Enable AOT register allocation. Default: true
+--compiler-balance-expressions: Enable Balance Expressions Pass. Default: true
+--compiler-branch-elimination: Enable Branch Elimination Pass. Default: true
+--compiler-check-final: Enable Graph checking only after last optimization(Codegen). Default: false
+--compiler-check-graph: Enable Graph checking after each optimization. Default: true
+--compiler-checks-elimination: Enable Checks Elimination Pass. Default: true
+--compiler-code-sink: Enable Code Sink Pass. Default: true
+--compiler-compact-prologue: Omit unused callee-registers save/restore in prologue/epilogue when possible.. Default: true
+--compiler-cpu-features: Set compiler CPU features. Possible values: ["none", "crc32", "sse42", "jscvt"]. Default: ["sse42"]
+--compiler-cross-arch: On AMD64 enable creation of non-native code for testing purpose. Possible values: ["arm", "arm64", "x86", "x86_64"]. Default: "arm64"
+--compiler-cse: Enable CSE Pass. Default: false
+--compiler-death-counter-value: Minimum value of aged counter, which will be still considered. Default: 500
+--compiler-defer-preheader-transform: Defer processing of loop preheader in peepholer and branch elimination until past unrolling. Default: true
+--compiler-deoptimize-elimination: Enable Deoptimize Elimination Pass. Default: true
+--compiler-disasm-dump: Enable dump disasm to text files. Default: "false"
+  Sub arguments:
+    single-file: Dump disasm files into single file, which is "disasm.txt". Default: false
+    stdout: Dump to the standard output. Default: false
+    code: Dump generated assembly code. Default is true.. Default: true
+    code-info: Dump code info. Default: false
+    file-name: File name to dump. Used only when 'single-file' is set.. Default: "disasm.txt"
+--compiler-dump: Enable dump ir. Default: "false"
+  Sub arguments:
+    final: Dump ir only after last (codegen) pass. Default: false
+    compact: Suppress dumping of some data (bc, SaveState instructions, etc). Default: false
+    life-intervals: Dump life intervals from regalloc. Default: false
+    folder: Set folder for dump ir. Default: "./ir_dump"
+    bytecode: Enable printing byte code instruction after ir instruction in dump ir. Default: false
+    peepholes: Enable dumps each time peephole applies. Default: false
+    source-line: Dump source line after instruction. Default: false
+--compiler-dump-stats-csv: Dump optimizations statistics in csv file. Default: ""
+--compiler-emit-asm: Enable dump assembly to disasm.txt file (do not emit binary). Default: false
+--compiler-emit-debug-info: Emit DWARF debug info for JIT/AOT code, PANDA_COMPILER_DEBUG_INFO should be set. Default: false
+--compiler-enable-events: Enable optimizations events dump. Default: false
+--compiler-enable-ir-stats: Enable collecting ir stats on compiler statistic. Default: false
+--compiler-enable-jit: Enables/disables JIT compiler. Default: true
+--compiler-enable-osr: Enables/disables OSR compilation. Default: true
+--compiler-enable-replacing-checks-on-deoptimization: Enable replacing checks on deoptimization in checks elimination. Default: true
+--compiler-enable-tlab-events: Enable events for tlab allocation. Default: false
+--compiler-enable-tracing: Enable tracing for passes. Default: false
+--compiler-encode-intrinsics: If false, we always call C impementation of an intrinsic. Default: true
+--compiler-epoch-duration: Duration in milliseconds of an epoch in compiler aged counter priority queue. Default: 500
+--compiler-events-path: Set path for optimizations events dump. Default: "./compiler/events.csv"
+--compiler-force-unresolved: Force the compiler to generate method and field resolvers whenever it is possible (Debug mode only). Default: false
+--compiler-freq-based-branch-reorder: Enables/disables frequency based branch reorder. Default: true
+--compiler-freq-based-branch-reorder-threshold: Threshold in percents for frequency based branch reorder. Default: 80
+--compiler-hotness-threshold: Threshold for "hotness" counter of the method after that it will be compiled. Default: 3000
+--compiler-if-conversion: Enable IfConversion Pass. Default: true
+--compiler-if-conversion-incrase-limit-threshold: If the execution of each of the edge branch is greater than threshold in percents, then the limit increases. Default: 40
+--compiler-if-conversion-limit: Maximum amount of instructions in basicblock(s) for if-conversion. Default: 2
+--compiler-ignore-failures: Ignore failures occurred during compilation. Default: true
+--compiler-implicit-null-check: Apply Implicit Null Check. Default: true
+--compiler-inline-external-methods: Enable inlining external methods in JIT mode. Default: true
+--compiler-inline-full-intrinsics: Inline graph for dynamic insrinsics in IrBuilder. Default: false
+--compiler-inline-simple-only: Inline only simple methods that don't contain calls to runtime. Default: false
+--compiler-inlining: Enable inlining optimization. Default: true
+--compiler-inlining-blacklist: Method names that should not be inlined. Default: []
+--compiler-inlining-max-depth: Maximum depth of the inlining.. Default: 4
+--compiler-inlining-max-insts: Maximum number of the IR instructions to be inlined, including instructions of the current graph.. Default: 1024
+--compiler-inlining-max-size: Maximum bytecode size for inlined functions, in bytes. Avarage bytecode instruction size is 2.8 bytes.. Default: 200
+--compiler-inlining-skip-always-throw-methods: Don't inline methods that always throw an exception. Default: true
+--compiler-inlining-skip-throw-blocks: Don't inline methods inside blocks throwing an exception or performing deoptimization. Default: true
+--compiler-js-filter-intrinsics: Enable intrinsics filter in JS Compiler. Default: true
+--compiler-licm: Enable LICM Pass. Default: true
+--compiler-licm-conditions: Enable LICM conditions Pass. Default: true
+--compiler-licm-hoist-limit: Set the instructions limit which are hoisted by LICM. Default: 200
+--compiler-log: Set log compiler components. Possible values: ["none", "all", "alias-analysis", "balance-expr", "branch-elim", "checks-elim", "codegen", "code-sink", "cse-opt", "graph-cloner", "deoptimize-elim", "cleanup", "if-merging", "ifconversion", "inlining", "ir-builder", "licm-opt", "licm-cond-opt", "loop-unswitch", "liveness-analyzer", "loop-transform", "lowering", "lse-opt", "memory-coalescing", "monitor-analysis", "peephole", "rle-opt", "regalloc", "split-resolver", "scheduler", "try-catch-resolving", "vn-opt", "bridges-ss", "pm", "pea"]. Default: ["none"]
+--compiler-loop-idioms: Enable Loop idioms Pass. Default: true
+--compiler-loop-peeling: Enable Loop peeling Pass. Default: true
+--compiler-loop-unroll: Enable Loop unroll Pass. Default: true
+--compiler-loop-unroll-factor: Set loop unrolling factor. Default: 6
+--compiler-loop-unroll-inst-limit: Set the instructions limit for the unrolling loop body. Default: 100
+--compiler-loop-unswitch: Enable Loop unswitch Pass. Default: true
+--compiler-loop-unswitch-max-insts: Max loop unswitch instructions. Default: 100
+--compiler-loop-unswitch-max-level: Max loop unswitch level. Default: 3
+--compiler-lowering: Enable Lowering Pass. Default: true
+--compiler-lse: Enable Load-Store Elimination Pass. Default: true
+--compiler-max-bytecode-size: Maximum size of the method's code to be compiled.. Default: 30000
+--compiler-max-gen-code-size: Maximum size of the generated code in code-cache, default 63 M. Default: 66060288
+--compiler-max-vregs-num: Maximum number of virtual registers in a method. Can't be more than 32764.. Default: 8188
+--compiler-memory-coalescing: Enable Memory Coalescing Pass. Default: true
+--compiler-memory-coalescing-aligned: Apply Memory Coalescing only to aligned accesses. Default: false
+--compiler-memory-coalescing-objects: Apply Memory Coalescing to objects accesses. Default: true
+--compiler-memory-size-limit: Max memory used by the compiler. Default: 268435456
+--compiler-move-constants: Enable move constants from start block closer to usage. Default: true
+--compiler-no-cha-inlining: Don't use CHA in the inlining. Default: false
+--compiler-no-pic-inlining: Don't use Polymorphic Inline Caches in the inlining. Default: false
+--compiler-no-virtual-inlining: Disable inlining of the virtual calls. Default: false
+--compiler-non-optimizing: Skip all optimizations. Default: false
+--compiler-nullcheck: Dfx option for compiler-nullcheck. Possible values: [0, 1]. Default: 1
+--compiler-print-stats: Print optimizations statistics. Default: false
+--compiler-profile: Path to a file with profile information. Default: ""
+--compiler-profiling-threshold: Threshold to start method profiling.. Default: 1500
+--compiler-queue-max-length: Max length of compiler queue. Default: 100
+--compiler-queue-type: Type of compiler queue. Possible values: ["simple", "counter-priority", "aged-counter-priority"]. Default: "counter-priority"
+--compiler-reg-acc-alloc: Enable accumulator register allocator pass. Default: true
+--compiler-regalloc-reg-mask: Mask of registers, avaliable for regalloc. Default: 0
+--compiler-regex: A regular expression that specifies methods to compile. The grammar used is ECMA-262 RegExp grammar.. Default: ".*"
+--compiler-remat-const: Rematerialize constants instead of spilling them to the stack. Default: true
+--compiler-reset-local-allocator: Reset local allocator between passes runs. Default: true
+--compiler-safe-points-require-reg-map: Emit virtual registers stack map for safe points. Default: false
+--compiler-safepoint-elimination-limit: Set the instructions limit in deoptimize elimination for removing safe points.. Default: 50
+--compiler-save-only-live-registers: Save and Load only registers that contains live values when making calls.. Default: true
+--compiler-scalar-replacement: Enable scalar replacement optimization. Default: true
+--compiler-sched-latency: Set default instruction latency. Default: 2
+--compiler-sched-latency-long: Set loads latency. Default: 7
+--compiler-scheduling: Enable Scheduling Pass. Default: true
+--compiler-spill-fill-pair: Store and load values from successive stack slots as pair of values during SpillFill encoding.. Default: true
+--compiler-support-init-object-inst: Compiler don't create InitObject  and GraphChecker checks this. The options are needed for bytecode optimizer.. Default: false
+--compiler-task-life-span: A time in milliseconds of task life span in compiler counter priority queue. Default: 500
+--compiler-unfold-const-array-max-size: Set the maximum size of the constant array to unfold a single LoadConstArray instruction to the initial instructions set.. Default: 20
+--compiler-unroll-loop-with-calls: Enable unroll for loops containing method calls. Default: false
+--compiler-unroll-unknown-trip-count: Enable unroll for loops for which trip count is not known in advance. Default: true
+--compiler-unroll-with-side-exits: Enable unroll with side exits for not countable loop. Default: true
+--compiler-use-safepoint: Build SafePoint instructions. Default: true
+--compiler-verify-regalloc: Verify register allocation results in debug mode.. Default: true
+--compiler-visualizer-dump: Enable visualizer dump ir. Default: false
+--compiler-vn: Enable Value Numbering Pass. Default: true
+--concurrent-gc-enabled: whether concurrent GC is enabled. Default: true
+--coroutine-impl: chooses coroutine implementation (either OS thread based emulation or full-featured fiber like). Possible values: ["threaded", "stackful"]. Default: "threaded"
+--coroutine-js-mode: Enable JS interop mode (affects launch behaviour and async functions). Default: false
+--coroutine-stack-size-pages: defines stack size for stackful coroutines (in number of pages). Default: 64
+--coroutine-workers-count: Number of worker threads for the NxM coroutine scheme (use 0 for auto). Default: 1
+--coroutines-stack-mem-limit: defines the total amount of memory that can be used for stackful coroutine stacks allocation (in bytes). Default: 134217728
+--debugger-break-on-start: Whether to break threads on creation or not. Default: false
+--debugger-enable: Is debugger enabled on runtime create. Default: false
+--debugger-library-path: Path to debugger library. Default: ""
+--debugger-port: Port for serving debugger clients via socket. Default: 19015
+--dfx-log: Dfx option for dfx log. Possible values: [0, 1]. Default: 0
+--distributed-profiling: Enable/disable collection of information for distributed profiling. Default: false
+--enable-an: Try to load ARK .an file base on abc file location. Default: "false"
+  Sub arguments:
+    force: Crash if there is no .an file for location based on .abc file. Default: false
+--enable-fast-heap-verifier: Enable fast heap verifier, which is faster than ordinary heap verifier but uses more internal memory. Default: true
+--enable-paralled-young-gc: enable-paralled-young-gc. Default: true
+--ets.concurrent-gc-enabled: whether concurrent GC is enabled. Only for ets. Default: true
+--ets.coroutine-impl: chooses coroutine implementation (either OS thread based emulation or full-featured fiber like). Only for ets. Possible values: ["threaded", "stackful"]. Default: "threaded"
+--ets.coroutine-js-mode: Enable JS interop mode (affects launch behaviour and async functions). Only for ets. Default: false
+--ets.coroutine-workers-count: Number of worker threads for the NxM coroutine scheme (use 0 for auto). Only for ets. Default: 1
+--ets.enable-fast-heap-verifier: Enable fast heap verifier, which is faster than ordinary heap verifier but uses more internal memory. Only for ets. Default: true
+--ets.enable-paralled-young-gc: enable-paralled-young-gc. Only for ets. Default: true
+--ets.fail-on-heap-verification: if enabled then fail execution if heap verifier found heap corruption. Only for ets. Default: false
+--ets.gc-debug-trigger-start: First iteration to start returning true in debug trigger. Only for ets. Default: 0
+--ets.gc-dump-heap: Dump heap before and after GC. Only for ets. Default: false
+--ets.gc-enable-tracing: enables/disables tracing gc. Only for ets. Default: false
+--ets.gc-trigger-type: Type of used GC trigger. Only for ets. Possible values: ["heap-trigger-test", "heap-trigger", "adaptive-heap-trigger", "trigger-heap-occupancy", "no-gc-for-start-up", "debug", "debug-never", "pause-time-goal-trigger"]. Default: "heap-trigger-test"
+--ets.gc-type: Type of used GC. Only for ets. Possible values: ["epsilon", "epsilon-g1", "stw", "gen-gc", "g1-gc"]. Default: "g1-gc"
+--ets.into-gc-heap-verify-enabled: whether verify heap during GC. Only for ets. Default: false
+--ets.native-gc-trigger-type: Type of native gc trigger. Only for ets. Possible values: ["no-native-gc-trigger", "simple-strategy"]. Default: "simple-strategy"
+--ets.post-gc-heap-verify-enabled: whether verify heap after GC. Only for ets. Default: false
+--ets.pre-gc-heap-verify-enabled: whether verify heap before GC. Only for ets. Default: false
+--ets.run-gc-in-place: Enable/disable running GC only in place. Only for ets. Default: false
+--ets.skip-startup-gc-count: No stw gc count for no-gc-for-start-up. Only for ets. Default: 10
+--events-file: Path to events output file (if needed). Default: "events.csv"
+--events-output: Specify events output. Possible values: ["none", "csv", "memory", "log"]. Default: "none"
+--explicit-concurrent-gc-enabled: Enable/disable explicit GC run in concurrent. Default: true
+--fail-on-heap-verification: if enabled then fail execution if heap verifier found heap corruption. Default: false
+--finalizer-timeout-ms: Set finalizer daemon watchdog time. Default: 10000
+--frames-memory-size-limit: Max internal memory used for frames in the VM. Default: 2147483648
+--framework-abc-file: snapshot file. Default: "strip.native.min.abc"
+--full-gc-bombing-frequency: Switch on running Full GC collection instead of the one in the trigger queue in the GC thread. Value means frequency - each N collection in the GC thread will be a full collection. Can't be use with run-gc-in-place. Default: 0
+--g1-enable-concurrent-update-remset: enables/disables concurrent update remset thread. Default: true
+--g1-full-gc-region-fragmentation-rate: Maximum fragmentation percentage for a tenured region with no garbage inside to skip it on full collection. If the region has bigger fragmentation, we will collect it during a full collection in spite of it has no garbage inside. 0 value means we will collect every region.. Default: 10
+--g1-min-concurrent-cards-to-process: Minimum number of cards to process from queue in update-remset-thread. Higher number consumes less CPU, but can cause higher pause.. Default: 2
+--g1-number-of-tenured-regions-at-mixed-collection: Specify a max number of tenured regions which can be collected at mixed collection in G1GC.. Default: 20
+--g1-pause-time-goal: Enable G1 pause time goal. Default: "false"
+  Sub arguments:
+    max-gc-pause: Maximum sum of G1 GC pauses during gc-pause-interval in milliseconds. Default: 10
+    gc-pause-interval: Time interval for max-gc-pause in milliseconds. Default: 11
+--g1-promotion-region-alive-rate: Minimum percentage of alive bytes in young region to promote it into tenured without moving. 100 value means never.. Default: 75
+--g1-region-garbage-rate-threshold: Specify garbage rate threshold of a tenured region to be included into a mixed collection.. Default: 52
+--g1-track-freed-objects: Specify whether G1GC tracks object removing (i.e. update objects count in memstats and log removed objects). Default means true on Release and false otherwise. If the value is true G1GC doesn't delete classes in concurrent phase because it needs to know object size.. Possible values: ["default", "true", "false"]. Default: "default"
+--gc-debug-trigger-start: First iteration to start returning true in debug trigger. Default: 0
+--gc-dump-heap: Dump heap before and after GC. Default: false
+--gc-enable-tracing: enables/disables tracing gc. Default: false
+--gc-marking-stack-new-tasks-frequency: Limit the creation rate of tasks during marking in nanoseconds. if average task creation during marking is less than this value - it increases the stack size limit to create tasks less frequently.. Default: 10000000
+--gc-parallel-compacting-enabled: Enable parallel compacting in GC if it is supported (now it is G1). If we don't have gc workers, this options will be ignored.. Default: true
+--gc-parallel-marking-enabled: Enable parallel marking in GC if it is supported (now it is G1 and STW). If we don't have gc workers, this options will be ignored.. Default: true
+--gc-parallel-ref-updating-enabled: Enable parallel references updating in GC if it is supported (now it is G1). If we don't have gc workers, this options will be ignored.. Default: true
+--gc-root-marking-stack-max-size: The max stack size for root marking in main thread, if it exceeded, we will send a new task to workers. 0 means unlimited.. Default: 186
+--gc-trigger-adaptive-multiplier: Adjust jump from too frequent gc. New jump calculate as gc-trigger-adaptive-multiplier * max-max-extra-heap-size. Default: 3
+--gc-trigger-percent-threshold: Percent of heap for threshold increasing. Default: 15
+--gc-trigger-type: Type of used GC trigger. Possible values: ["heap-trigger-test", "heap-trigger", "adaptive-heap-trigger", "trigger-heap-occupancy", "no-gc-for-start-up", "debug", "debug-never", "pause-time-goal-trigger"]. Default: "heap-trigger-test"
+--gc-type: Type of used GC. Possible values: ["epsilon", "epsilon-g1", "stw", "gen-gc", "g1-gc"]. Default: "g1-gc"
+--gc-use-nth-alloc-trigger: Allow to trigger GC on n-th allocation. Default: false
+--gc-workers-count: Set number of additional GC helper threads. GC uses these threads to speed up collection doing work in parallel.. Default: 2
+--gc-workers-marking-stack-max-size: The max stack size for marking stage proceed in workers threads, if it exceeded, we will send a new task to other workers. 0 means unlimited.. Default: 200
+--global-reference-size-check-enabled: whether open the global reference size check. Default: false
+--heap-size-limit: Max heap size. Default: 536870912
+--heap-verifier: parameters for heap verification. Possible values: ["pre", "into", "post", "before_g1_concurrent", "fail_on_verification"]. Default: []
+--help: Print this message and exit
+--ic-enable: switch of inline cache. Default: true
+--icu-data-path: Path to generated icu data file. Default: "default"
+--ignore-daemon-memory-leaks-threshold: Ignore daemon memory leaks during runtime destruction with the specified threshold. Default: 0
+--init-heap-size-limit: Initial size of pool used for objects (Xms). If it was not set explicitly then it set as heap-size-limit. Default: 536870912
+--init-young-space-size: Initial young space size gen-gc. Default: 4194304
+--internal-allocator-type: Default means using malloc for Release, and panda allocators for Debug builds. If we use malloc, we will ignore limit-standard-alloc option.. Possible values: ["panda_allocators", "malloc", "default"]. Default: "default"
+--internal-memory-size-limit: Max internal memory used by the VM. Default: 2147483648
+--interpreter-type: Interpreter implementation type. Possible values: ["cpp", "irtoc", "llvm"]. Default: "llvm"
+--into-gc-heap-verify-enabled: whether verify heap during GC. Default: false
+--intrinsics-blacklist: List of methods for which intrinsics should not be linked. Default: []
+--intrusive-test: Numerical identifier of an intrusive test. Default: 0
+--limit-standard-alloc: Limit standard allocations usage in runtime. Default: false
+--load-runtimes: Load specified class and intrinsic spaces and define runtime type. Possible values: ["core", "ets"]. Default: ["core"]
+--log-components: Enable logs from specified components. Possible values: ["all", "alloc", "mm-obj-events", "classlinker", "common", "core", "gc", "gc_trigger", "reference_processor", "interpreter", "compiler", "llvmaot", "pandafile", "memorypool", "runtime", "trace", "debugger", "interop", "jni", "verifier", "compilation_queue", "jvmti", "aot", "events", "ecmascript", "scheduler", "coroutines"]. Default: ["all"]
+--log-debug: Enable debug or above logs from specified components. Possible values: ["all", "alloc", "mm-obj-events", "classlinker", "common", "core", "gc", "gc_trigger", "reference_processor", "interpreter", "compiler", "llvmaot", "pandafile", "memorypool", "runtime", "trace", "debugger", "interop", "jni", "verifier", "compilation_queue", "jvmti", "aot", "events", "ecmascript", "scheduler", "coroutines"]. Default: ["all"]
+--log-detailed-gc-compaction-info-enabled: If print INFO log to get more detailed compaction/promotion information per region in GC.. Default: false
+--log-detailed-gc-info-enabled: If print INFO log to get more detailed information in GC.. Default: false
+--log-error: Enable error or above logs from specified components. Possible values: ["all", "alloc", "mm-obj-events", "classlinker", "common", "core", "gc", "gc_trigger", "reference_processor", "interpreter", "compiler", "llvmaot", "pandafile", "memorypool", "runtime", "trace", "debugger", "interop", "jni", "verifier", "compilation_queue", "jvmti", "aot", "events", "ecmascript", "scheduler", "coroutines"]. Default: ["all"]
+--log-fatal: Enable fatal logs from specified components. Possible values: ["all", "alloc", "mm-obj-events", "classlinker", "common", "core", "gc", "gc_trigger", "reference_processor", "interpreter", "compiler", "llvmaot", "pandafile", "memorypool", "runtime", "trace", "debugger", "interop", "jni", "verifier", "compilation_queue", "jvmti", "aot", "events", "ecmascript", "scheduler", "coroutines"]. Default: ["all"]
+--log-file: File name for file-logger. Default: ""
+--log-info: Enable info or above logs from specified components. Possible values: ["all", "alloc", "mm-obj-events", "classlinker", "common", "core", "gc", "gc_trigger", "reference_processor", "interpreter", "compiler", "llvmaot", "pandafile", "memorypool", "runtime", "trace", "debugger", "interop", "jni", "verifier", "compilation_queue", "jvmti", "aot", "events", "ecmascript", "scheduler", "coroutines"]. Default: ["all"]
+--log-level: Log level. Possible values: ["debug", "info", "warning", "error", "fatal"]. Default: "error"
+--log-stream: Log level. Possible values: ["std", "file", "fast-file", "dummy"]. Default: "std"
+--log-warning: Enable warning or above logs from specified components. Possible values: ["all", "alloc", "mm-obj-events", "classlinker", "common", "core", "gc", "gc_trigger", "reference_processor", "interpreter", "compiler", "llvmaot", "pandafile", "memorypool", "runtime", "trace", "debugger", "interop", "jni", "verifier", "compilation_queue", "jvmti", "aot", "events", "ecmascript", "scheduler", "coroutines"]. Default: ["all"]
+--manage-gc-threads-affinity: Manage GC Threads affinity on cores. Default: true
+--max-extra-heap-size: Maximum extra heap size for trigger gc. Default: 8388608
+--max-free: Trigger native memory recycling watermark, default 8 M. Default: 8388608
+--max-global-ref-size: max size of global reference storage. Default: 65535
+--max-heap-free-percentage: Maximum percentage of free space in heap. Must be 0 <= min-heap-free-percentage <= max-heap-free-percentage <= 100. Default: 70
+--max-trigger-percent: Percent of maximum heap size is used as threshold for trigger-heap-occupancy. Default: 45
+--mem-alloc-dump-exec: true if need to dump. Default: false
+--mem-alloc-dump-file: Path to mem dump file (if needed). Default: "mem_dump.csv"
+--min-extra-heap-size: Minimum extra heap size for trigger gc. Default: 5242880
+--min-heap-free-percentage: Minimum percentage of free space in heap. Must be 0 <= min-heap-free-percentage <= max-heap-free-percentage <= 100. Default: 30
+--mobile-log-flag: Dfx option for mobile-log. Possible values: [0, 1]. Default: 1
+--native-gc-trigger-type: Type of native gc trigger. Possible values: ["no-native-gc-trigger", "simple-strategy"]. Default: "simple-strategy"
+--no-async-jit: Perform compilation in the main thread or in parallel worker. Default: false
+--options: Print compiler and runtime options
+--panda-files: Panda files separated by colon which is not within boot-panda-files. Default: []
+--post-gc-heap-verify-enabled: whether verify heap after GC. Default: false
+--pre-gc-heap-verify-enabled: whether verify heap before GC. Default: false
+--print-gc-statistics: Enable/disable printing gc statistics in the end of the program. Default: false
+--print-memory-statistics: Enable/disable printing memory statistics in the end of the program. Default: false
+--profile-output: Specify the location the collected profile information. Default: "profile.bin"
+--profilesaver-delta-number-threshold: delta number threshold of newly added method or class for profile saver. Default: 0
+--profilesaver-enabled: whether open the profilesaver functions. Default: false
+--profilesaver-sleeping-time-ms: Set wake up period time of daemon thread for profile saver. Default: 2000
+--properties: command-line property settings of VM. Default: ["user.locale=en-US"]
+--reference-dump: Dfx option for reference-dump. Possible values: [0, 1]. Default: 1
+--reference-processor-enable: Enables/disables ReferenceProcessor. Default: true
+--resolve-string-aot-threshold: Minimum amount of ResolveStringAot calls before storing string pointer into PLT-slot. Default: 1
+--run-gc-every-safepoint: Run GC on every safepoint. GC will be run only if we use gc-trigger-type=debug and run-gc-in-place=true. Default: false
+--run-gc-in-place: Enable/disable running GC only in place. Default: false
+--runtime-compressed-strings-enabled: Enable/disable compressed strings. Default: true
+--runtime-type: Runtime type. This option is for fine tuning. Use load-runtimes instead. Possible values: ["core", "ets"]. Default: "core"
+--safepoint-backtrace: Print backtrace each time a thread gets suspended. Default: false
+--sampling-profiler-enable: Is the sampling profiler enabled during execution time. Default: false
+--sampling-profiler-interval: Sampling profiler interval in microseconds. Default: 500
+--sampling-profiler-output-file: Name of file to collect trace in .aspt format. Default: ""
+--signal-catcher: Dfx option for signal-catcher. Possible values: [0, 1]. Default: 1
+--signal-handler: Dfx option for signal-handler. Possible values: [0, 1]. Default: 1
+--sigquit-flag: Dfx option for sigquit. Possible values: [0, 1]. Default: 1
+--sigusr1-flag: Dfx option for sigusr1. Possible values: [0, 1]. Default: 1
+--sigusr2-flag: Dfx option for sigusr2. Possible values: [0, 1]. Default: 1
+--skip-startup-gc-count: No stw gc count for no-gc-for-start-up. Default: 10
+--snapshot-deserialize-enabled: whether snapshot deserialize is enabled. Default: true
+--snapshot-file: snapshot file. Default: "/system/etc/snapshot"
+--snapshot-serialize-enabled: whether snapshot serialize is enabled. Default: false
+--start-as-zygote: whether current vm is zygote. Default: false
+--startup-time: Print the start time of command execution. Default: false
+--use-coroutine-pool: caches coroutine and coroutine context instances in a pool to speedup creation/destruction. Default: false
+--use-tlab-for-allocations: Enable/disable TLAB using for object allocations. Now, it is ignored for all GCs except GenGC. Temporary option for quick switch between modes.. Default: true
+--use-weak-cpu-for-gc-concurrent: Set GC Thread on weak cores during concurrent phases. Default: false
+--verification-cache-file: verifier cache filename. Default: ""
+--verification-config-file: filename with debug config for verifier. Default: "default"
+--verification-enabled: Whether to enable verification. Default: false
+--verification-mode: Verification mode. If verification-enabled option is turned on, the default value is ahead-of-time.. Possible values: ["disabled", "on-the-fly", "ahead-of-time"]. Default: "disabled"
+--verification-threads: number of verification threads. Default: 1
+--verification-update-cache: Whether to update verification result cache. Default: true
+--verify-call-stack: Verify call stack before using of the StackWalker. Default: false
+--verify-entrypoints: Verify compiler entrypoints. Default: false
+--version: Ark version, file format version and minimum supported file format version
+--young-shared-space-size: How much space in young-gen are shared (this space is not used for tlabs). Default: 524288
+--young-space-size: Young space size of gen-gc. Default: 4194304
+Tail arguments:
+file: path to pandafile
+entrypoint: full name of entrypoint function or method
+
