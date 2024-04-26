@@ -16,6 +16,5 @@ t.fillEvents()
 # t.findSuitableEvent()
 # t.print()
 # t.printEventCpuMap()
-# vm.threads[0].frames[vm.threads[0].currentFrame].registers['acc'] = 5
-# vm.threads[0].frames[vm.threads[0].currentFrame].registers['r1'] = 10
-t.checkSequence(t.events)
+t.checkSequence(t.events, vm)
+print(t.isCorrectTrace)

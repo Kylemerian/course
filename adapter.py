@@ -5,7 +5,6 @@ import re
 from parsing.parse import *
 
 output = open("output", "w")
-output.write("-\n")
 
 # local_frame-ы
 frames = dict()
@@ -17,6 +16,7 @@ cpus[-1] = -1
 
 def printArgs(eventName, cmd):
     global output
+    print(cmd)
     evProts = o.getObjs()
     curEvent = evProts[eventName + "_Frame"]
     j = 0
@@ -46,14 +46,16 @@ def parsePC(s):
     print(f"##### Parsing command")
     global tidFlag
     global output, frame_num, cpus, frames
+    
     s = s.replace(']', '').replace('[', '')
     s = s.split()
     tid = s[1]
     cmd = s[6:]
-    print("REAL TID = ", tid)
-    print("Command = ", cmd)
-    print("KNOWN CPUS: ", cpus)
-    print("Local frames dict:", frames)
+
+    # print("REAL TID = ", tid)
+    # print("Command = ", cmd)
+    # print("KNOWN CPUS: ", cpus)
+    # print("Local frames dict:", frames)
     
     # return statement
     if cmd[0] == 'return':
@@ -69,9 +71,9 @@ def parsePC(s):
         frames[mappedCpuId] += 1
     # else save new ID
     else:
-        print("size of known threads - 1 =", len(cpus) - 1)
+        # print("size of known threads - 1 =", len(cpus) - 1)
         cpus[tid] = len(cpus) - 1
-        print("size of known threads - 1 =", len(cpus) - 1)
+        # print("size of known threads - 1 =", len(cpus) - 1)
         mappedCpuId = cpus[tid]
         # print(cpus[tid])
         frames[mappedCpuId] = 0
@@ -93,8 +95,9 @@ def parsePC(s):
 
     output.write("    event: " + cmd[0] + "\n")
     printArgs(cmd[0], cmd)
+    output.write("    pc.pri: " + str(int(s[4], 16)) + "\n")
     # output.write("-\n")
-    print(f"##### End parsing cmd")
+    # print(f"##### End parsing cmd")
 
 
 def parseMem(s):
@@ -123,10 +126,6 @@ def parseMem(s):
     
 
 
-def separateMemFrame():
-    pass
-
-
 def adapt(tracefile):
     with open(tracefile, "r") as file:
         s = file.readline()
@@ -146,7 +145,6 @@ if __name__ == "__main__":
     if len(sys.argv) != 3:
         print("python3 adapter.py TRACEFILE REKAFILE")
     else:
-        # print(sys.argv[1])
         o = parseFile(sys.argv[2])
         # o.print()
         adapt(sys.argv[1])

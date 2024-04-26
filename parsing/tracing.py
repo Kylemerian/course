@@ -1,15 +1,3 @@
-# def checkTrace(traceFile):
-#     global doc
-#     with open(traceFile, 'r') as file:
-#         doc = yaml.safe_load(file)
-#     f = open("cacheObj", "w")
-#     f.write("-\n")
-#     f.close()
-#     fillEvents(doc)
-#     checkSeq(events)
-#     os.remove("cacheObj")
-    
-    
 import yaml
 from parse import *
 from functions import *
@@ -53,7 +41,6 @@ class EventMap:
             print(x, self.events[x])
     
     def fillEvents(self):
-        
         with open(self.file, 'r') as file:
             self.yamldict = yaml.safe_load(file)
             for elem in self.yamldict:
@@ -75,7 +62,7 @@ class EventMap:
     def checkGuard(self, ev: EventForTrace):
         res = True
         # print("in cGuard")
-        # print(self.eventsProt)
+        # print(ev.event)
         for guardCond in self.eventsProt[ev.event].guards:
             print(guardCond)
             # CHECK GUARD
@@ -86,9 +73,7 @@ class EventMap:
         res = list() # список подходящих событий с параметрами
         # print("res = ", res)
         for ev in evs.items():
-            # print("in fSuitEv")
             if ev[1]["cur"] <= ev[1]["max"]:
-                # print("in fSuitEv")
                 frame_id = self.yamldict[ev[1]["cur"]]["unique_frame"]
                 cpu = ev[0]
                 local_frame = self.yamldict[ev[1]["cur"]]["local_frame"]
@@ -97,10 +82,15 @@ class EventMap:
                 tmp = Object(event_name)
                 for attr in self.objects[event_name + "_Frame"].objAttr.items():
                     tmp.objAttr[attr[0].replace(".frame", "")] = self.yamldict[ev[1]["cur"]]["frame." + attr[0]]
+
+                # print(self.yamldict[ev[1]["cur"]])
+                for attr in self.yamldict[ev[1]["cur"]].keys():
+                    if attr.endswith(".pri"):
+                        attrName = attr.replace(".pri", "")
+                        tmp.objAttr[attrName] = self.yamldict[ev[1]["cur"]][attr]
                 correct_event = EventForTrace(frame_id, cpu, local_frame, event_name, object_name, tmp)
                 if self.checkGuard(correct_event):
                     res.append(correct_event)
-        # print(res)
         return res
     
 
@@ -117,25 +107,49 @@ class EventMap:
         return res
 
     
-    def checkSequence(self, evs):
+    def isCorrectArith(self, ev, stepVM):
+        # print(ev.frame.objAttr)
+        res = True
+        print("check sim for cpu", ev.cpu, " id =", ev.local_frame)
+        intersect = {key: value for key, value in ev.frame.objAttr.items() if key in stepVM.threads[ev.cpu].frames[stepVM.threads[ev.cpu].currentFrame].registers}
+        for x in intersect:
+            print(f"VM: {x} =", ev.frame.objAttr[x], f"| Sim: {x} =", stepVM.threads[ev.cpu].frames[stepVM.threads[ev.cpu].currentFrame].registers[x])
+            if ev.frame.objAttr[x] != stepVM.threads[ev.cpu].frames[stepVM.threads[ev.cpu].currentFrame].registers[x]:
+                if not(x == 'pc' and stepVM.threads[ev.cpu].frames[stepVM.threads[ev.cpu].currentFrame].registers[x] == 0):
+                    res = False
+        return res
 
+
+    def checkSequence(self, evs, vm):
         # print("check seq: ", evs)
+        print("^^^^^^^^^^^^^^^^^^^^^^^^^^")
         step = self.findSuitableEvent(evs)
         if len(step) == 0:
             if self.lengthEvents(evs) == 0:
                 self.isCorrectTrace = True
-                print("CORRECT2")
         
+        # print(step)
         for ev in step:
-            print("acc = ", self.vm.threads[0].frames[self.vm.threads[0].currentFrame].registers['acc'])
-            print("v0 = ", self.vm.threads[0].frames[self.vm.threads[0].currentFrame].registers['v0'])
-            print("v1 = ", self.vm.threads[0].frames[self.vm.threads[0].currentFrame].registers['v1'])
+            
+            # print(ev.unique_frame)
             if self.isCorrectTrace:
-                print("CORRECT")
                 break
+                
             stepEvents = copy.deepcopy(evs)
             # ev.print()
-            self.doActions(ev)
+            # added copy vm
+            stepVM = copy.deepcopy(vm)
+            stepVM.print()
+            self.doActions(ev, stepVM)
+            
+            if not self.isCorrectArith(ev, stepVM):
+                # print(step)
+                # continue
+                if len(step) == 1 and self.lengthEvents(evs) == 0:
+                    break
+                else:
+                    continue
+
             if stepEvents[ev.cpu]["cur"] == stepEvents[ev.cpu]["max"]:
                 del stepEvents[ev.cpu]
             
@@ -143,59 +157,44 @@ class EventMap:
             for item in stepEvents.items():
                 # print(":", item[1]["cur"], ": u_frame:", ev.unique_frame)
                 if ev.unique_frame == item[1]["cur"]:
-                    # print("set next")
                     self.setNextEvent(ev.cpu, ev.local_frame, stepEvents)
 
-            
-            
-            self.checkSequence(stepEvents)
+            self.checkSequence(stepEvents, stepVM)
 
     
-    def doActions(self, ev):
-        # self.printEventCpuMap()
-        # print(self.eventsProt)
+    def doActions(self, ev, vm):
         for action in self.eventsProt[ev.event].actions:
-            print("##################################")
-            print("ACTION: ", action)
-            # print(ev.frame.objAttr)
-            # 
-            # print(self.vm.threads[0].frames[self.vm.threads[0].currentFrame].registers)
-            
+            # print("----------------------------------------")
+            # print(f"INS: {ev.event}", "| action =", action)
+            # print(f"ARGS: {ev.frame.objAttr}")
             act = action[1].replace("frame.", "").replace(".value", "")
-            print("ACTION2: ", act)
-            
-            # print("to act: ", action)
-            # print(self.vm.threads[0].frames[self.vm.threads[0].currentFrame].registers['acc'], self.vm.threads[0].frames[self.vm.threads[0].currentFrame].registers['r1'])
-            # print("res = ", eval(act, {**self.vm.threads[0].frames[self.vm.threads[0].currentFrame].registers, **getDictForFuncs()}))
-
-            # print(action[0], " to write")
+            vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers['pc'] = ev.frame.objAttr['pc'] 
             if action[0] == 'acc.value' or action[0] == 'frame.acc.value':
-                # print(getDictForFuncs(), getDictForFuncs()['xor'](1, 2))
-                print("EVAL: acc = ", act)
+                # print(f"THREAD #{ev.cpu}: acc =", act)
                 # делаем подстановку на значения регистров
                 for arg in ev.frame.objAttr.keys():
                     if arg == '$location' or arg == '$subframe':
                         continue
-                    print(arg)
-                    print("EVAL EER", ev.frame.objAttr[arg])
-                    # print(len(ev.frame.objAttr[arg]))
-                    ev.frame.objAttr[arg] = eval(str(ev.frame.objAttr[arg]), self.vm.threads[0].frames[self.vm.threads[0].currentFrame].registers)
-
-                print("------------------")
-                # print({**ev.frame.objAttr, **self.vm.threads[0].frames[self.vm.threads[0].currentFrame].registers, **getDictForFuncs()})
-
-                self.vm.threads[0].frames[self.vm.threads[0].currentFrame].registers['acc'] = eval(act, {**ev.frame.objAttr, **self.vm.threads[0].frames[self.vm.threads[0].currentFrame].registers, **getDictForFuncs()})
-                print("RES: ", self.vm.threads[0].frames[self.vm.threads[0].currentFrame].registers['acc'])
+                    ev.frame.objAttr[arg] = eval(str(ev.frame.objAttr[arg]), vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers)
+                
+        
+                # vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers['pc'] = ev.frame.objAttr['pc']        
+                # dictForEval = {**ev.frame.objAttr, **vm.threads[0].frames[vm.threads[0].currentFrame].registers}
+                
+                vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers['acc'] = eval(act, {**ev.frame.objAttr, **vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers, **getDictForFuncs()})
+                # print("RES: ", vm.threads[0].frames[self.vm.threads[0].currentFrame].registers['acc'])
+                # vm.print()
+                # print("----------------------------------------")
             else:
                 reg = ev.frame.objAttr[action[0].replace("frame.", "").replace(".value", "")]
-                
-                print("EVAL: ", reg, " = ",  act)
-                self.vm.threads[0].frames[self.vm.threads[0].currentFrame].registers[reg] = eval(act, {**ev.frame.objAttr, **self.vm.threads[0].frames[self.vm.threads[0].currentFrame].registers, **getDictForFuncs()})
-                # print(self.vm.threads[0].frames[self.vm.threads[0].currentFrame].registers[reg])
-                print("RES: ", self.vm.threads[0].frames[self.vm.threads[0].currentFrame].registers[reg])
-                
-                print("------------------")
-                # print({**ev.frame.objAttr, **self.vm.threads[0].frames[self.vm.threads[0].currentFrame].registers, **getDictForFuncs()})
+                if not reg:
+                    continue
+
+                # print(f"THREAD #{ev.cpu}:", reg, "=", act)
+                # dictForEval = {**ev.frame.objAttr, **vm.threads[0].frames[vm.threads[0].currentFrame].registers}
+                vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers[reg] = eval(act, {**ev.frame.objAttr, **vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers, **getDictForFuncs()})
+                # vm.print()
+                # print("----------------------------------------")
 
 
             #???!!!!!!!!!!!!!!!!
