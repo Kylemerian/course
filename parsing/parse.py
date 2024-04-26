@@ -134,12 +134,24 @@ class eventParse:
         self.data = dict()
     
     def parse(self):
-        # print(self.data)
-        if self.buff != [''] and self.buff[0] == "fgraph":
-            tmp = self.event(self.buff[1])
-            name = self.buff[1]
+        # print("BUFF = ", self.buff)
+        if self.buff != [''] and (self.buff[0] == "fgraph" or self.buff[0][0] == '['):
+            name = ""
+            tmp = ""
+            if self.buff[0][0] != '[':
+                tmp = self.event(self.buff[1])
+                name = self.buff[1]
+                self.buff = getline(self.file)
+            else:
+                label = self.buff[0].replace("]", "").replace("[", "").split("_")[-1]
+                # print("label = ", label)
+                
+                name = self.buff[0].replace("]", "").replace("[", "").replace("_start_finish_"+label, "") + "^^" + label
+                tmp = self.event(name)
+                # print(self.buff[0].replace("]", "").replace("[", "").split("_"))
             # print("TO PARSE EVENT = ", name)
-            self.buff = getline(self.file)
+            
+            
             self.buff = getline(self.file)
             self.buff = getline(self.file)
             self.guardParse(tmp)
@@ -177,7 +189,8 @@ class eventParse:
             self.wdsParse(ev)
     
     def actionParse(self, ev):
-        if self.buff != [''] and self.buff[0] != "fgraph":
+        # print("act BUFF", self.buff, self.buff[0][0])
+        if self.buff != [''] and (self.buff[0] != "fgraph") and not self.buff[0][0] == '[':
             arr = list()
             arr.append(self.buff[0].strip(" "))
             #print("action before parsed=", arr)

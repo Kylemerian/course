@@ -59,17 +59,70 @@ class EventMap:
     def getEventSequence(self):
         return self.events
     
-    def checkGuard(self, ev: EventForTrace):
+    def convertStrToValue(self, s):
+        if s == "True":
+            return True
+        if s == "False":
+            return False
+        return int(s)
+    
+    
+    def checkGuard(self, ev: EventForTrace, vm):
         res = True
         # print("in cGuard")
         # print(ev.event)
         for guardCond in self.eventsProt[ev.event].guards:
-            print(guardCond)
-            # CHECK GUARD
-            pass
+            # print(guardCond, len(guardCond[0]))
+            if len(guardCond[0]) == 1:
+                continue
+            # print(guardCond)
+            guardCond = guardCond[0]
+            if guardCond[1] == "=":
+                if guardCond[0].startswith("frame."):
+                    s = guardCond[0].replace("frame.", "")
+                    if not(ev.frame.objAttr[s] == self.convertStrToValue(guardCond[2])):
+                        res = 0
+                else:
+                    if not(vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers[guardCond[0]] == self.convertStrToValue(guardCond[2])):
+                        res = 0
+            elif guardCond[1] == "<=":
+                if guardCond[0].startswith("frame."):
+                    s = guardCond[0].replace("frame.", "")
+                    if not(ev.frame.objAttr[s] <= self.convertStrToValue(guardCond[2])):
+                        res = 0
+                else:
+                    if not(vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers[guardCond[0]] <= self.convertStrToValue(guardCond[2])):
+                        res = 0
+            elif guardCond[1] == ">=":
+                if guardCond[0].startswith("frame."):
+                    s = guardCond[0].replace("frame.", "")
+                    if not(ev.frame.objAttr[s] >= self.convertStrToValue(guardCond[2])):
+                        res = 0
+                else:
+                    if not(vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers[guardCond[0]] >= self.convertStrToValue(guardCond[2])):
+                        res = 0
+            elif guardCond[1] == ">":
+                if guardCond[0].startswith("frame."):
+                    s = guardCond[0].replace("frame.", "")
+                    if not(ev.frame.objAttr[s] > self.convertStrToValue(guardCond[2])):
+                        res = 0
+                else:
+                    if not(vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers[guardCond[0]] > self.convertStrToValue(guardCond[2])):
+                        res = 0
+            elif guardCond[1] == "<":
+                if guardCond[0].startswith("frame."):
+                    s = guardCond[0].replace("frame.", "")
+                    if not(ev.frame.objAttr[s] < self.convertStrToValue(guardCond[2])):
+                        res = 0
+                else:
+                    if not(vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers[guardCond[0]] < self.convertStrToValue(guardCond[2])):
+                        res = 0
+            else:
+                print("smth went wrong...")
+            
         return res
 
-    def findSuitableEvent(self, evs):
+    def findSuitableEvent(self, evs, vm):
         res = list() # список подходящих событий с параметрами
         # print("res = ", res)
         for ev in evs.items():
@@ -89,7 +142,7 @@ class EventMap:
                         attrName = attr.replace(".pri", "")
                         tmp.objAttr[attrName] = self.yamldict[ev[1]["cur"]][attr]
                 correct_event = EventForTrace(frame_id, cpu, local_frame, event_name, object_name, tmp)
-                if self.checkGuard(correct_event):
+                if self.checkGuard(correct_event, vm):
                     res.append(correct_event)
         return res
     
@@ -123,7 +176,7 @@ class EventMap:
     def checkSequence(self, evs, vm):
         # print("check seq: ", evs)
         print("^^^^^^^^^^^^^^^^^^^^^^^^^^")
-        step = self.findSuitableEvent(evs)
+        step = self.findSuitableEvent(evs, vm)
         if len(step) == 0:
             if self.lengthEvents(evs) == 0:
                 self.isCorrectTrace = True

@@ -4,14 +4,14 @@ def xor_(a, b):
 def shr_(a, offset):
     return (a >> offset) & 0xffffffffffffffff
 
-# def ashr(a, offset):
-#     return (a >> offset) & 0xffffffffffffffff
+def ashr(a, offset):
+    return (a >> offset) & 0xffffffffffffffff
 
 def shl_(a, offset):
     return (a << offset) & 0xffffffffffffffff
 
 def new_array_(a):
-    return [0] * a
+    return [0 for _ in range(a)]
 
 def sizeof_(a):
     return a.__sizeof__()
