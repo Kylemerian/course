@@ -1059,7 +1059,7 @@ fgraph:jne
 guards:
   frame.$location = 0
   valid(frame.r1)
-  acc.value-frame.r1.value = 0
+  acc.value = frame.r1.value
 wds:
   valid(frame.r1)
   valid(acc)
@@ -1069,7 +1069,7 @@ actions:
 guards:
   frame.$location = 0
   valid(frame.r1)
-  acc.value-frame.r1.value ≠ 0
+  acc.value ≠ frame.r1.value
 wds:
   valid(frame.r1)
   valid(acc)
@@ -1205,7 +1205,7 @@ wds:
   valid(frame.r1)
   valid(acc)
 actions:
-  acc.value := (acc.value+frame.r1.value)%BIT32_DIV
+  acc.value := (acc.value+frame.r1.value)%2147483648
   frame.$location := -1
 fgraph:add2_64
 [add2_64_start_finish_1]
@@ -1216,7 +1216,7 @@ wds:
   valid(frame.r1)
   valid(acc)
 actions:
-  acc.value := (acc.value+frame.r1.value)%BIT64_DIV
+  acc.value := (acc.value+frame.r1.value)%18446744073709551616
   frame.$location := -1
 fgraph:sub2
 [sub2_start_finish_1]
@@ -1227,7 +1227,7 @@ wds:
   valid(frame.r1)
   valid(acc)
 actions:
-  acc.value := (acc.value-frame.r1.value)%BIT32_DIV
+  acc.value := (acc.value-frame.r1.value)%2147483648
   frame.$location := -1
 fgraph:sub2_64
 [sub2_64_start_finish_1]
@@ -1238,7 +1238,7 @@ wds:
   valid(frame.r1)
   valid(acc)
 actions:
-  acc.value := (acc.value-frame.r1.value)%BIT64_DIV
+  acc.value := (acc.value-frame.r1.value)%18446744073709551616
   frame.$location := -1
 fgraph:mul2
 [mul2_start_finish_1]
@@ -1249,7 +1249,7 @@ wds:
   valid(frame.r1)
   valid(acc)
 actions:
-  acc.value := acc.value*frame.r1.value%BIT32_DIV
+  acc.value := acc.value*frame.r1.value%2147483648
   frame.$location := -1
 fgraph:mul2_64
 [mul2_64_start_finish_1]
@@ -1260,7 +1260,7 @@ wds:
   valid(frame.r1)
   valid(acc)
 actions:
-  acc.value := acc.value*frame.r1.value%BIT64_DIV
+  acc.value := acc.value*frame.r1.value%18446744073709551616
   frame.$location := -1
 fgraph:and2
 [and2_start_finish_1]
@@ -1271,7 +1271,7 @@ wds:
   valid(acc)
   valid(frame.r1)
 actions:
-  acc.value := and(r1.value,acc.value)%BIT32_DIV
+  acc.value := and(r1.value,acc.value)%2147483648
   frame.$location := -1
 fgraph:and2_64
 [and2_64_start_finish_1]
@@ -1282,7 +1282,7 @@ wds:
   valid(acc)
   valid(frame.r1)
 actions:
-  acc.value := and(r1.value,acc.value)%BIT64_DIV
+  acc.value := and(r1.value,acc.value)%18446744073709551616
   frame.$location := -1
 fgraph:or2
 [or2_start_finish_1]
@@ -1293,7 +1293,7 @@ wds:
   valid(acc)
   valid(frame.r1)
 actions:
-  acc.value := or(r1.value,acc.value)%BIT32_DIV
+  acc.value := or(r1.value,acc.value)%2147483648
   frame.$location := -1
 fgraph:or2_64
 [or2_64_start_finish_1]
@@ -1304,7 +1304,7 @@ wds:
   valid(acc)
   valid(frame.r1)
 actions:
-  acc.value := or(r1.value,acc.value)%BIT64_DIV
+  acc.value := or(r1.value,acc.value)%18446744073709551616
   frame.$location := -1
 fgraph:xor2
 [xor2_start_finish_1]
@@ -1315,7 +1315,7 @@ wds:
   valid(acc)
   valid(frame.r1)
 actions:
-  acc.value := xor(r1.value,acc.value)%BIT32_DIV
+  acc.value := xor(r1.value,acc.value)%2147483648
   frame.$location := -1
 fgraph:xor2_64
 [xor2_64_start_finish_1]
@@ -1326,7 +1326,7 @@ wds:
   valid(acc)
   valid(frame.r1)
 actions:
-  acc.value := xor(r1.value,acc.value)%BIT64_DIV
+  acc.value := xor(r1.value,acc.value)%18446744073709551616
   frame.$location := -1
 fgraph:shl2
 [shl2_start_finish_1]
@@ -1337,7 +1337,7 @@ wds:
   valid(frame.r1)
   valid(acc)
 actions:
-  acc.value := shl(acc.value,r1.value)%BIT32_DIV
+  acc.value := shl(acc.value,r1.value)%2147483648
   frame.$location := -1
 fgraph:shl2_64
 [shl2_64_start_finish_1]
@@ -1348,7 +1348,7 @@ wds:
   valid(frame.r1)
   valid(acc)
 actions:
-  acc.value := shl(acc.value,r1.value)%BIT64_DIV
+  acc.value := shl(acc.value,r1.value)%18446744073709551616
   frame.$location := -1
 fgraph:shr2
 [shr2_start_finish_1]
@@ -1359,7 +1359,7 @@ wds:
   valid(frame.r1)
   valid(acc)
 actions:
-  acc.value := shr(acc.value,r1.value)%BIT32_DIV
+  acc.value := shr(acc.value,r1.value)%2147483648
   frame.$location := -1
 fgraph:shr2_64
 [shr2_64_start_finish_1]
@@ -1370,7 +1370,7 @@ wds:
   valid(frame.r1)
   valid(acc)
 actions:
-  acc.value := shr(acc.value,r1.value)%BIT64_DIV
+  acc.value := shr(acc.value,r1.value)%18446744073709551616
   frame.$location := -1
 fgraph:ashr2
 [ashr2_start_finish_1]
@@ -1381,7 +1381,7 @@ wds:
   valid(frame.r1)
   valid(acc)
 actions:
-  acc.value := ashr(acc.value,r1.value)%BIT32_DIV
+  acc.value := ashr(acc.value,r1.value)%2147483648
   frame.$location := -1
 fgraph:ashr2_64
 [ashr2_64_start_finish_1]
@@ -1392,7 +1392,7 @@ wds:
   valid(frame.r1)
   valid(acc)
 actions:
-  acc.value := ashr(acc.value,r1.value)%BIT64_DIV
+  acc.value := ashr(acc.value,r1.value)%18446744073709551616
   frame.$location := -1
 fgraph:div2
 [div2_start_finish_1]
@@ -1657,7 +1657,7 @@ wds:
   valid(frame.r1)
   valid(acc)
 actions:
-  acc.value := (frame.r1.value+frame.r2.value)%BIT32_DIV
+  acc.value := (frame.r1.value+frame.r2.value)%2147483648
   frame.$location := -1
 fgraph:sub
 [sub_start_finish_1]
@@ -1670,7 +1670,7 @@ wds:
   valid(frame.r1)
   valid(acc)
 actions:
-  acc.value := (frame.r1.value-frame.r2.value)%BIT32_DIV
+  acc.value := (frame.r1.value-frame.r2.value)%2147483648
   frame.$location := -1
 fgraph:mul
 [mul_start_finish_1]
@@ -1683,7 +1683,7 @@ wds:
   valid(frame.r1)
   valid(acc)
 actions:
-  acc.value := frame.r1.value*frame.r2.value%BIT32_DIV
+  acc.value := frame.r1.value*frame.r2.value%2147483648
   frame.$location := -1
 fgraph:or
 [or_start_finish_1]
@@ -1696,7 +1696,7 @@ wds:
   valid(frame.r1)
   valid(acc)
 actions:
-  acc.value := or(r1.value,r2.value)%BIT32_DIV
+  acc.value := or(r1.value,r2.value)%2147483648
   frame.$location := -1
 fgraph:and
 [and_start_finish_1]
@@ -1709,7 +1709,7 @@ wds:
   valid(frame.r1)
   valid(acc)
 actions:
-  acc.value := and(r1.value,r2.value)%BIT32_DIV
+  acc.value := and(r1.value,r2.value)%2147483648
   frame.$location := -1
 fgraph:xor
 [xor_start_finish_1]
@@ -1722,7 +1722,7 @@ wds:
   valid(frame.r1)
   valid(acc)
 actions:
-  acc.value := xor(r1.value,r2.value)%BIT32_DIV
+  acc.value := xor(r1.value,r2.value)%2147483648
   frame.$location := -1
 fgraph:shl
 [shl_start_finish_1]
@@ -1735,7 +1735,7 @@ wds:
   valid(frame.r1)
   valid(acc)
 actions:
-  acc.value := shl(r1.value,r2.value)%BIT32_DIV
+  acc.value := shl(r1.value,r2.value)%2147483648
   frame.$location := -1
 fgraph:shr
 [shr_start_finish_1]
@@ -1748,7 +1748,7 @@ wds:
   valid(frame.r1)
   valid(acc)
 actions:
-  acc.value := shr(r1.value,r2.value)%BIT32_DIV
+  acc.value := shr(r1.value,r2.value)%2147483648
   frame.$location := -1
 fgraph:ashr
 [ashr_start_finish_1]
@@ -1761,7 +1761,7 @@ wds:
   valid(frame.r1)
   valid(acc)
 actions:
-  acc.value := ashr(r1.value,r2.value)%BIT32_DIV
+  acc.value := ashr(r1.value,r2.value)%2147483648
   frame.$location := -1
 fgraph:addi
 [addi_start_finish_1]
@@ -1770,7 +1770,7 @@ guards:
 wds:
   valid(acc)
 actions:
-  acc.value := (acc.value+frame.r1)%BIT32_DIV
+  acc.value := (acc.value+frame.r1)%2147483648
   frame.$location := -1
 fgraph:subi
 [subi_start_finish_1]
@@ -1779,7 +1779,7 @@ guards:
 wds:
   valid(acc)
 actions:
-  acc.value := (acc.value-frame.r1)%BIT32_DIV
+  acc.value := (acc.value-frame.r1)%2147483648
   frame.$location := -1
 fgraph:muli
 [muli_start_finish_1]
@@ -1788,7 +1788,7 @@ guards:
 wds:
   valid(acc)
 actions:
-  acc.value := acc.value*frame.r1%BIT32_DIV
+  acc.value := acc.value*frame.r1%2147483648
   frame.$location := -1
 fgraph:ori
 [ori_start_finish_1]
@@ -1797,7 +1797,7 @@ guards:
 wds:
   valid(acc)
 actions:
-  acc.value := or(acc.value,r1)%BIT32_DIV
+  acc.value := or(acc.value,r1)%2147483648
   frame.$location := -1
 fgraph:andi
 [andi_start_finish_1]
@@ -1806,7 +1806,7 @@ guards:
 wds:
   valid(acc)
 actions:
-  acc.value := and(acc.value,r1)%BIT32_DIV
+  acc.value := and(acc.value,r1)%2147483648
   frame.$location := -1
 fgraph:xori
 [xori_start_finish_1]
@@ -1815,7 +1815,7 @@ guards:
 wds:
   valid(acc)
 actions:
-  acc.value := xor(acc.value,r1)%BIT32_DIV
+  acc.value := xor(acc.value,r1)%2147483648
   frame.$location := -1
 fgraph:shli
 [shli_start_finish_1]
@@ -1824,7 +1824,7 @@ guards:
 wds:
   valid(acc)
 actions:
-  acc.value := shl(acc.value,r1)%BIT32_DIV
+  acc.value := shl(acc.value,r1)%2147483648
   frame.$location := -1
 fgraph:shri
 [shri_start_finish_1]
@@ -1833,7 +1833,7 @@ guards:
 wds:
   valid(acc)
 actions:
-  acc.value := shr(acc.value,r1)%BIT32_DIV
+  acc.value := shr(acc.value,r1)%2147483648
   frame.$location := -1
 fgraph:ashri
 [ashri_start_finish_1]
@@ -1842,7 +1842,7 @@ guards:
 wds:
   valid(acc)
 actions:
-  acc.value := ashr(acc.value,r1)%BIT32_DIV
+  acc.value := ashr(acc.value,r1)%2147483648
   frame.$location := -1
 fgraph:i32toi64
 [i32toi64_start_finish_1]
@@ -1863,7 +1863,7 @@ wds:
   valid(frame.r1)
 actions:
   frame.r1._type := i32
-  frame.r1.value := frame.r1.value%BIT32_DIV
+  frame.r1.value := frame.r1.value%2147483648
   frame.$location := -1
 fgraph:i32toi16
 [i32toi16_start_finish_1]
@@ -1982,7 +1982,7 @@ wds:
   valid(frame.r1)
 actions:
   frame.r1._type := i32
-  frame.r1.value := frame.r1.value%BIT32_DIV
+  frame.r1.value := frame.r1.value%2147483648
   frame.$location := -1
 fgraph:u64tou32
 [u64tou32_start_finish_1]
@@ -1993,7 +1993,7 @@ wds:
   valid(frame.r1)
 actions:
   frame.r1._type := u32
-  frame.r1.value := frame.r1.value%BIT32_DIV
+  frame.r1.value := frame.r1.value%2147483648
   frame.$location := -1
 fgraph:i32tou1
 [i32tou1_start_finish_1]
@@ -2083,7 +2083,7 @@ guards:
 wds:
   valid(frame.r1)
 actions:
-  frame.r1.value := (frame.r1.value+frame.r2)%BIT32_DIV
+  frame.r1.value := (frame.r1.value+frame.r2)%2147483648
   frame.$location := -1
 fgraph:casttoint
 [casttoint_start_finish_1]

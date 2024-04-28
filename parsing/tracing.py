@@ -59,12 +59,18 @@ class EventMap:
     def getEventSequence(self):
         return self.events
     
-    def convertStrToValue(self, s):
+    def convertStrToValue(self, s, vm, ev):
         if s == "True":
             return True
         if s == "False":
             return False
-        return int(s)
+        # print(s)
+        if s.isdigit():
+            return int(s)
+        
+        s = s.replace("frame.", "").replace(".value", "")
+        s = ev.frame.objAttr[s]
+        return eval(s, vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers)
     
     
     def checkGuard(self, ev: EventForTrace, vm):
@@ -80,42 +86,42 @@ class EventMap:
             if guardCond[1] == "=":
                 if guardCond[0].startswith("frame."):
                     s = guardCond[0].replace("frame.", "")
-                    if not(ev.frame.objAttr[s] == self.convertStrToValue(guardCond[2])):
+                    if not(ev.frame.objAttr[s] == self.convertStrToValue(guardCond[2], vm, ev)):
                         res = 0
                 else:
-                    if not(vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers[guardCond[0]] == self.convertStrToValue(guardCond[2])):
+                    if not(vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers[guardCond[0].replace(".value", "")] == self.convertStrToValue(guardCond[2], vm, ev)):
                         res = 0
             elif guardCond[1] == "<=":
                 if guardCond[0].startswith("frame."):
                     s = guardCond[0].replace("frame.", "")
-                    if not(ev.frame.objAttr[s] <= self.convertStrToValue(guardCond[2])):
+                    if not(ev.frame.objAttr[s] <= self.convertStrToValue(guardCond[2], vm, ev)):
                         res = 0
                 else:
-                    if not(vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers[guardCond[0]] <= self.convertStrToValue(guardCond[2])):
+                    if not(vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers[guardCond[0].replace(".value", "")] <= self.convertStrToValue(guardCond[2], vm, ev)):
                         res = 0
             elif guardCond[1] == ">=":
                 if guardCond[0].startswith("frame."):
                     s = guardCond[0].replace("frame.", "")
-                    if not(ev.frame.objAttr[s] >= self.convertStrToValue(guardCond[2])):
+                    if not(ev.frame.objAttr[s] >= self.convertStrToValue(guardCond[2], vm, ev)):
                         res = 0
                 else:
-                    if not(vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers[guardCond[0]] >= self.convertStrToValue(guardCond[2])):
+                    if not(vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers[guardCond[0].replace(".value", "")] >= self.convertStrToValue(guardCond[2], vm, ev)):
                         res = 0
             elif guardCond[1] == ">":
                 if guardCond[0].startswith("frame."):
                     s = guardCond[0].replace("frame.", "")
-                    if not(ev.frame.objAttr[s] > self.convertStrToValue(guardCond[2])):
+                    if not(ev.frame.objAttr[s] > self.convertStrToValue(guardCond[2], vm, ev)):
                         res = 0
                 else:
-                    if not(vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers[guardCond[0]] > self.convertStrToValue(guardCond[2])):
+                    if not(vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers[guardCond[0].replace(".value", "")] > self.convertStrToValue(guardCond[2], vm, ev)):
                         res = 0
             elif guardCond[1] == "<":
                 if guardCond[0].startswith("frame."):
                     s = guardCond[0].replace("frame.", "")
-                    if not(ev.frame.objAttr[s] < self.convertStrToValue(guardCond[2])):
+                    if not(ev.frame.objAttr[s] < self.convertStrToValue(guardCond[2], vm, ev)):
                         res = 0
                 else:
-                    if not(vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers[guardCond[0]] < self.convertStrToValue(guardCond[2])):
+                    if not(vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers[guardCond[0].replace(".value", "")] < self.convertStrToValue(guardCond[2], vm, ev)):
                         res = 0
             else:
                 print("smth went wrong...")

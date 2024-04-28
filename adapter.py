@@ -32,6 +32,7 @@ def printArgs(eventName, cmd):
 # возвращает тип строки (pc counter str [pc]/ memory trace [mem]/ [unk] for other) 
 def instype(s):
     s = s.split()
+    print(s)
     if s[3].strip(':') == "pc":
         return "pc"
     if s[3] == "Invoke":
