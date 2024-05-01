@@ -11,6 +11,7 @@ class EventForTrace:
         self.event = event
         self.obj = obj
         self.frame = frame
+        self.label = ""
 
 
     def print(self):
@@ -73,15 +74,24 @@ class EventMap:
         return eval(s, vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers)
     
     
+    def nextLabel(self, ev):
+        if ev.label == "":
+            return "^^2"
+        t = ev.label[2:]
+        return "^^" + str(int(t) + 1)
+    
+    
     def checkGuard(self, ev: EventForTrace, vm):
         res = True
+        regsDict = vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers
         # print("in cGuard")
         # print(ev.event)
-        for guardCond in self.eventsProt[ev.event].guards:
+        eventName = ev.event
+        for guardCond in self.eventsProt[eventName + ev.label].guards:
             # print(guardCond, len(guardCond[0]))
             if len(guardCond[0]) == 1:
                 continue
-            # print(guardCond)
+            print(guardCond)
             guardCond = guardCond[0]
             if guardCond[1] == "=":
                 if guardCond[0].startswith("frame."):
@@ -89,7 +99,7 @@ class EventMap:
                     if not(ev.frame.objAttr[s] == self.convertStrToValue(guardCond[2], vm, ev)):
                         res = 0
                 else:
-                    if not(vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers[guardCond[0].replace(".value", "")] == self.convertStrToValue(guardCond[2], vm, ev)):
+                    if not(regsDict[guardCond[0].replace(".value", "")] == self.convertStrToValue(guardCond[2], vm, ev)):
                         res = 0
             elif guardCond[1] == "<=":
                 if guardCond[0].startswith("frame."):
@@ -97,7 +107,7 @@ class EventMap:
                     if not(ev.frame.objAttr[s] <= self.convertStrToValue(guardCond[2], vm, ev)):
                         res = 0
                 else:
-                    if not(vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers[guardCond[0].replace(".value", "")] <= self.convertStrToValue(guardCond[2], vm, ev)):
+                    if not(regsDict[guardCond[0].replace(".value", "")] <= self.convertStrToValue(guardCond[2], vm, ev)):
                         res = 0
             elif guardCond[1] == ">=":
                 if guardCond[0].startswith("frame."):
@@ -105,7 +115,7 @@ class EventMap:
                     if not(ev.frame.objAttr[s] >= self.convertStrToValue(guardCond[2], vm, ev)):
                         res = 0
                 else:
-                    if not(vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers[guardCond[0].replace(".value", "")] >= self.convertStrToValue(guardCond[2], vm, ev)):
+                    if not(regsDict[guardCond[0].replace(".value", "")] >= self.convertStrToValue(guardCond[2], vm, ev)):
                         res = 0
             elif guardCond[1] == ">":
                 if guardCond[0].startswith("frame."):
@@ -113,7 +123,7 @@ class EventMap:
                     if not(ev.frame.objAttr[s] > self.convertStrToValue(guardCond[2], vm, ev)):
                         res = 0
                 else:
-                    if not(vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers[guardCond[0].replace(".value", "")] > self.convertStrToValue(guardCond[2], vm, ev)):
+                    if not(regsDict[guardCond[0].replace(".value", "")] > self.convertStrToValue(guardCond[2], vm, ev)):
                         res = 0
             elif guardCond[1] == "<":
                 if guardCond[0].startswith("frame."):
@@ -121,16 +131,23 @@ class EventMap:
                     if not(ev.frame.objAttr[s] < self.convertStrToValue(guardCond[2], vm, ev)):
                         res = 0
                 else:
-                    if not(vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers[guardCond[0].replace(".value", "")] < self.convertStrToValue(guardCond[2], vm, ev)):
+                    if not(regsDict[guardCond[0].replace(".value", "")] < self.convertStrToValue(guardCond[2], vm, ev)):
                         res = 0
             else:
                 print("smth went wrong...")
-            
+        
+        print(ev.event + ev.label, ev.cpu, ev.local_frame, " IN GUARD CHECK EVENT <-")
+        print(ev.event + self.nextLabel(ev), " next lebl")
+        if (ev.event + self.nextLabel(ev)) in self.eventsProt.keys():
+            ev.label = self.nextLabel(ev)
+            t = self.checkGuard(ev, vm)
+            return t    
         return res
 
     def findSuitableEvent(self, evs, vm):
         res = list() # список подходящих событий с параметрами
         # print("res = ", res)
+        
         for ev in evs.items():
             if ev[1]["cur"] <= ev[1]["max"]:
                 frame_id = self.yamldict[ev[1]["cur"]]["unique_frame"]
@@ -183,6 +200,7 @@ class EventMap:
         # print("check seq: ", evs)
         print("^^^^^^^^^^^^^^^^^^^^^^^^^^")
         step = self.findSuitableEvent(evs, vm)
+        print(f"******* suitables\n", step, "*********\n")
         if len(step) == 0:
             if self.lengthEvents(evs) == 0:
                 self.isCorrectTrace = True

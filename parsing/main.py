@@ -8,7 +8,7 @@ from vm import *
 vm = VM()
 
 o = parseFile(sys.argv[1])
-# o.print()
+o.print()
 
 t = EventMap(sys.argv[2], o.getObjs(), o.getEvents(), vm)
 # t.setObjects(o.getObjs())
