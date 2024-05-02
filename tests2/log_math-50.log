@@ -13,8 +13,4 @@
 [TID 003461] D/interpreter:  pc: 0x7f5c214b40c9 ---> movi.64 v0, -9223372036854775808
 [TID 003461] D/interpreter:      acc.pri = (i64) -9223372036854775808 | (f32) 0 | (f64) -0 | (hex) 8000000000000000
 [TID 003461] D/interpreter:      v0.pri = (i64) -9223372036854775808 | (f32) 0 | (f64) -0 | (hex) 8000000000000000
-[TID 003461] D/interpreter:  pc: 0x7f5c214b40d3 ---> cmp.64 v0
-[TID 003461] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
-[TID 003461] D/interpreter:      v0.pri = (i64) -9223372036854775808 | (f32) 0 | (f64) -0 | (hex) 8000000000000000
-[TID 003461] D/interpreter:  pc: 0x7f5c214b40d5 ---> return
 [TID 003461] D/interpreter: Invoke exit: _GLOBAL::main

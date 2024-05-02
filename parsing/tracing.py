@@ -94,7 +94,7 @@ class EventMap:
             if len(guardCond[0]) == 1:
                 continue
             guardCond = guardCond[0]
-            print(guardCond)
+            # print(guardCond)
             if guardCond[1] == "=":
                 if guardCond[0].startswith("frame."):
                     s = guardCond[0].replace("frame.", "").replace(".value", "")
@@ -158,15 +158,15 @@ class EventMap:
             else:
                 print("smth went wrong...")
         
-        print(ev.event + ev.label, ev.cpu, ev.local_frame, guardCond, res, " IN GUARD CHECK EVENT <-")
+        # print(ev.event + ev.label, ev.cpu, ev.local_frame, guardCond, res, " IN GUARD CHECK EVENT <-")
         # print(ev.event + self.nextLabel(ev), " next lebl")
         if (not res) and((ev.event + self.nextLabel(ev)) in self.eventsProt.keys()):
             print("TRY another event node")
             ev.label = self.nextLabel(ev)
             t = self.checkGuard(ev, vm)
             return t
-        print("IN GUARD :", res)
-        print("---------------------")
+        # print("IN GUARD :", res)
+        # print("---------------------")
         return res
 
     def findSuitableEvent(self, evs, vm):
@@ -211,7 +211,7 @@ class EventMap:
     def isCorrectArith(self, ev, stepVM):
         # print(ev.frame.objAttr)
         res = True
-        print("check sim for cpu", ev.cpu, " id =", ev.local_frame)
+        print("checking arith for event: (", ev.cpu, ",", ev.local_frame, ")")
         intersect = {key: value for key, value in ev.frame.objAttr.items() if key in stepVM.threads[ev.cpu].frames[stepVM.threads[ev.cpu].currentFrame].registers}
         for x in intersect:
             print(f"VM: {x} =", ev.frame.objAttr[x], f"| Sim: {x} =", stepVM.threads[ev.cpu].frames[stepVM.threads[ev.cpu].currentFrame].registers[x])
@@ -229,7 +229,7 @@ class EventMap:
         # print("check seq: ", evs)
         print("^^^^^^^^^^^^^^^^^^^^^^^^^^")
         step = self.findSuitableEvent(evs, vm)
-        print(f"******* suitables\n", step, "*********\n")
+        print(f"***event pool\n", step, "*********\n")
         if len(step) == 0:
             if self.lengthEvents(evs) == 0:
                 self.isCorrectTrace = True
@@ -275,7 +275,7 @@ class EventMap:
             
             act = action[1].replace("frame.", "").replace(".value", "")
             vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers['pc'] = ev.frame.objAttr['pc']
-            print(f"INS: {ev.event}", "| action =", act)
+            print(f"INSTR: {ev.event}", "| action =", action)
             print(f"ARGS: {ev.frame.objAttr}")
             if action[0] == 'acc.value' or action[0] == 'frame.acc.value':
                 # print(f"THREAD #{ev.cpu}: acc =", act)
