@@ -16,7 +16,7 @@ cpus[-1] = -1
 
 def printArgs(eventName, cmd):
     global output
-    print(cmd)
+    # print(cmd)
     evProts = o.getObjs()
     curEvent = evProts[eventName + "_Frame"]
     j = 0
@@ -32,7 +32,7 @@ def printArgs(eventName, cmd):
 # возвращает тип строки (pc counter str [pc]/ memory trace [mem]/ [unk] for other) 
 def instype(s):
     s = s.split()
-    print(s)
+    # print(s)
     if s[3].strip(':') == "pc":
         return "pc"
     if s[3] == "Invoke":
@@ -44,7 +44,7 @@ tidFlag = 1
 
 
 def parsePC(s):
-    print(f"##### Parsing command")
+    # print(f"##### Parsing command")
     global tidFlag
     global output, frame_num, cpus, frames
     
@@ -67,7 +67,7 @@ def parsePC(s):
     # if real thread is known then get mapped cpu id
     if tid in cpus:
         mappedCpuId = cpus[tid]
-        print("tid in cpus: ", tid)
+        # print("tid in cpus: ", tid)
         # print(frames)
         frames[mappedCpuId] += 1
     # else save new ID
@@ -89,11 +89,19 @@ def parsePC(s):
     
     tidFlag = 1
 
-    print(cmd)
+    # print(cmd)
     # res = "\t" + " ".join(cmd) + "\n"
     for i in range(len(cmd)):
         cmd[i] = cmd[i].replace(',', '')
 
+    cmd[0] = cmd[0].replace(".", "_")
+    if cmd[0] == 'ret':
+        cmd[0] = 'return'
+    if cmd[0] == 'ret_64':
+        cmd[0] = 'return_64'
+    if cmd[0] == 'ret_void':
+        cmd[0] = 'return_void'
+    
     output.write("    event: " + cmd[0] + "\n")
     printArgs(cmd[0], cmd)
     output.write("    pc.pri: " + str(int(s[4], 16)) + "\n")
@@ -104,7 +112,7 @@ def parsePC(s):
 def parseMem(s):
     global output, tidFlag
     
-    print(s)
+    # print(s)
 
     s = s.replace(']', '').replace('[', '')
     s = s.split()
@@ -130,6 +138,8 @@ def parseMem(s):
 def adapt(tracefile):
     with open(tracefile, "r") as file:
         s = file.readline()
+        while s.find("pc:") == -1:
+            s = file.readline()
         while s:
             typ = instype(s)
             if typ == "pc":

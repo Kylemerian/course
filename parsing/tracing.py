@@ -91,57 +91,80 @@ class EventMap:
             # print(guardCond, len(guardCond[0]))
             if len(guardCond[0]) == 1:
                 continue
-            print(guardCond)
             guardCond = guardCond[0]
+            print(guardCond)
             if guardCond[1] == "=":
                 if guardCond[0].startswith("frame."):
-                    s = guardCond[0].replace("frame.", "")
+                    s = guardCond[0].replace("frame.", "").replace(".value", "")
                     if not(ev.frame.objAttr[s] == self.convertStrToValue(guardCond[2], vm, ev)):
+                        print("inequal in =")
                         res = 0
                 else:
                     if not(regsDict[guardCond[0].replace(".value", "")] == self.convertStrToValue(guardCond[2], vm, ev)):
+                        print("inequal in =")
                         res = 0
             elif guardCond[1] == "<=":
                 if guardCond[0].startswith("frame."):
-                    s = guardCond[0].replace("frame.", "")
+                    s = guardCond[0].replace("frame.", "").replace(".value", "")
                     if not(ev.frame.objAttr[s] <= self.convertStrToValue(guardCond[2], vm, ev)):
+                        print("inequal in <=")
                         res = 0
                 else:
                     if not(regsDict[guardCond[0].replace(".value", "")] <= self.convertStrToValue(guardCond[2], vm, ev)):
+                        print("inequal in <=")
                         res = 0
             elif guardCond[1] == ">=":
                 if guardCond[0].startswith("frame."):
-                    s = guardCond[0].replace("frame.", "")
+                    s = guardCond[0].replace("frame.", "").replace(".value", "")
                     if not(ev.frame.objAttr[s] >= self.convertStrToValue(guardCond[2], vm, ev)):
+                        print("inequal in >=")
                         res = 0
                 else:
                     if not(regsDict[guardCond[0].replace(".value", "")] >= self.convertStrToValue(guardCond[2], vm, ev)):
+                        print("inequal in >=")
                         res = 0
             elif guardCond[1] == ">":
                 if guardCond[0].startswith("frame."):
-                    s = guardCond[0].replace("frame.", "")
+                    s = guardCond[0].replace("frame.", "").replace(".value", "")
                     if not(ev.frame.objAttr[s] > self.convertStrToValue(guardCond[2], vm, ev)):
+                        print("inequal in >")
                         res = 0
                 else:
                     if not(regsDict[guardCond[0].replace(".value", "")] > self.convertStrToValue(guardCond[2], vm, ev)):
+                        print("inequal in >")
                         res = 0
             elif guardCond[1] == "<":
                 if guardCond[0].startswith("frame."):
-                    s = guardCond[0].replace("frame.", "")
+                    s = guardCond[0].replace("frame.", "").replace(".value", "")
                     if not(ev.frame.objAttr[s] < self.convertStrToValue(guardCond[2], vm, ev)):
+                        print("inequal in <")
                         res = 0
                 else:
                     if not(regsDict[guardCond[0].replace(".value", "")] < self.convertStrToValue(guardCond[2], vm, ev)):
+                        print("inequal in <")
+                        res = 0
+            elif guardCond[1] == "≠":
+                if guardCond[0].startswith("frame."):
+                    s = guardCond[0].replace("frame.", "").replace(".value", "")
+                    if not(ev.frame.objAttr[s] != self.convertStrToValue(guardCond[2], vm, ev)):
+                        print("inequal in !=")
+                        res = 0
+                else:
+                    if not(regsDict[guardCond[0].replace(".value", "")] != self.convertStrToValue(guardCond[2], vm, ev)):
+                        print("inequal in !=")
                         res = 0
             else:
                 print("smth went wrong...")
         
-        print(ev.event + ev.label, ev.cpu, ev.local_frame, " IN GUARD CHECK EVENT <-")
-        print(ev.event + self.nextLabel(ev), " next lebl")
-        if (ev.event + self.nextLabel(ev)) in self.eventsProt.keys():
+        print(ev.event + ev.label, ev.cpu, ev.local_frame, guardCond, res, " IN GUARD CHECK EVENT <-")
+        # print(ev.event + self.nextLabel(ev), " next lebl")
+        if (not res) and((ev.event + self.nextLabel(ev)) in self.eventsProt.keys()):
+            print("TRY another event node")
             ev.label = self.nextLabel(ev)
             t = self.checkGuard(ev, vm)
-            return t    
+            return t
+        print("IN GUARD :", res)
+        print("---------------------")
         return res
 
     def findSuitableEvent(self, evs, vm):
@@ -190,8 +213,12 @@ class EventMap:
         intersect = {key: value for key, value in ev.frame.objAttr.items() if key in stepVM.threads[ev.cpu].frames[stepVM.threads[ev.cpu].currentFrame].registers}
         for x in intersect:
             print(f"VM: {x} =", ev.frame.objAttr[x], f"| Sim: {x} =", stepVM.threads[ev.cpu].frames[stepVM.threads[ev.cpu].currentFrame].registers[x])
-            if ev.frame.objAttr[x] != stepVM.threads[ev.cpu].frames[stepVM.threads[ev.cpu].currentFrame].registers[x]:
+            equalValues = (ev.frame.objAttr[x] == stepVM.threads[ev.cpu].frames[stepVM.threads[ev.cpu].currentFrame].registers[x])
+            equalValuesOver32 = ((ev.frame.objAttr[x] % 4294967296 == stepVM.threads[ev.cpu].frames[stepVM.threads[ev.cpu].currentFrame].registers[x] % 4294967296))
+            equalValuesOver64 = ((ev.frame.objAttr[x] % 42949618446744073709551616296 == stepVM.threads[ev.cpu].frames[stepVM.threads[ev.cpu].currentFrame].registers[x] % 18446744073709551616))
+            if (not equalValues) and (not equalValuesOver32) and (not equalValuesOver64):
                 if not(x == 'pc' and stepVM.threads[ev.cpu].frames[stepVM.threads[ev.cpu].currentFrame].registers[x] == 0):
+                    print("Inequal maths!")
                     res = False
         return res
 
@@ -240,12 +267,14 @@ class EventMap:
 
     
     def doActions(self, ev, vm):
-        for action in self.eventsProt[ev.event].actions:
+        # maybe not necessary label
+        for action in self.eventsProt[ev.event + ev.label].actions:
             # print("----------------------------------------")
-            # print(f"INS: {ev.event}", "| action =", action)
-            # print(f"ARGS: {ev.frame.objAttr}")
+            
             act = action[1].replace("frame.", "").replace(".value", "")
-            vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers['pc'] = ev.frame.objAttr['pc'] 
+            vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers['pc'] = ev.frame.objAttr['pc']
+            print(f"INS: {ev.event}", "| action =", act)
+            print(f"ARGS: {ev.frame.objAttr}")
             if action[0] == 'acc.value' or action[0] == 'frame.acc.value':
                 # print(f"THREAD #{ev.cpu}: acc =", act)
                 # делаем подстановку на значения регистров
@@ -257,7 +286,7 @@ class EventMap:
         
                 # vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers['pc'] = ev.frame.objAttr['pc']        
                 # dictForEval = {**ev.frame.objAttr, **vm.threads[0].frames[vm.threads[0].currentFrame].registers}
-                
+                # print(getDictForFuncs())
                 vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers['acc'] = eval(act, {**ev.frame.objAttr, **vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers, **getDictForFuncs()})
                 # print("RES: ", vm.threads[0].frames[self.vm.threads[0].currentFrame].registers['acc'])
                 # vm.print()
@@ -266,7 +295,11 @@ class EventMap:
                 reg = ev.frame.objAttr[action[0].replace("frame.", "").replace(".value", "")]
                 if not reg:
                     continue
-
+                # делаем подстановку на значения регистров
+                for arg in ev.frame.objAttr.keys():
+                    if arg == '$location' or arg == '$subframe':
+                        continue
+                    ev.frame.objAttr[arg] = eval(str(ev.frame.objAttr[arg]), vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers)
                 # print(f"THREAD #{ev.cpu}:", reg, "=", act)
                 # dictForEval = {**ev.frame.objAttr, **vm.threads[0].frames[vm.threads[0].currentFrame].registers}
                 vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers[reg] = eval(act, {**ev.frame.objAttr, **vm.threads[ev.cpu].frames[vm.threads[ev.cpu].currentFrame].registers, **getDictForFuncs()})
