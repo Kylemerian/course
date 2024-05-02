@@ -68,6 +68,8 @@ class EventMap:
         # print(s)
         if s.isdigit():
             return int(s)
+        if len(s) > 1 and s[0] == '-' and s[1:].isdigit():
+            return -int(s[1:])
         
         s = s.replace("frame.", "").replace(".value", "")
         s = ev.frame.objAttr[s]

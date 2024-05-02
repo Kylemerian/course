@@ -1,0 +1,31 @@
+[TID 00315a] D/interpreter: Invoke entry: _GLOBAL::main
+[TID 00315a] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00315a] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00315a] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00315a] D/interpreter:      v2.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00315a] D/interpreter:      v3.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00315a] D/interpreter:  pc: 0x7f4b4ba1d0f5 ---> movi v0, 1
+[TID 00315a] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00315a] D/interpreter:      v0.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 00315a] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00315a] D/interpreter:      v2.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00315a] D/interpreter:      v3.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00315a] D/interpreter:  pc: 0x7f4b4ba1d0f7 ---> movi v1, 2
+[TID 00315a] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00315a] D/interpreter:      v0.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 00315a] D/interpreter:      v1.pri = (i64) 2 | (f32) 2.8026e-45 | (f64) 9.88131e-324 | (hex) 2
+[TID 00315a] D/interpreter:      v2.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00315a] D/interpreter:      v3.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00315a] D/interpreter:  pc: 0x7f4b4ba1d0f9 ---> movi v2, 3
+[TID 00315a] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00315a] D/interpreter:      v0.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 00315a] D/interpreter:      v1.pri = (i64) 2 | (f32) 2.8026e-45 | (f64) 9.88131e-324 | (hex) 2
+[TID 00315a] D/interpreter:      v2.pri = (i64) 3 | (f32) 4.2039e-45 | (f64) 1.4822e-323 | (hex) 3
+[TID 00315a] D/interpreter:      v3.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00315a] D/interpreter:  pc: 0x7f4b4ba1d0fb ---> movi v3, 4
+[TID 00315a] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00315a] D/interpreter:      v0.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 00315a] D/interpreter:      v1.pri = (i64) 2 | (f32) 2.8026e-45 | (f64) 9.88131e-324 | (hex) 2
+[TID 00315a] D/interpreter:      v2.pri = (i64) 3 | (f32) 4.2039e-45 | (f64) 1.4822e-323 | (hex) 3
+[TID 00315a] D/interpreter:      v3.pri = (i64) 4 | (f32) 5.60519e-45 | (f64) 1.97626e-323 | (hex) 4
+[TID 00315a] D/interpreter: Invoke exit: _GLOBAL::main

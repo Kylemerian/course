@@ -1,0 +1,26 @@
+[TID 002d6f] D/interpreter: Invoke entry: _GLOBAL::main
+[TID 002d6f] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002d6f] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002d6f] D/interpreter:  pc: 0x7f4cd2ce80b6 ---> ldai.64 151
+[TID 002d6f] D/interpreter:      acc.pri = (i64) 151 | (f32) 2.11596e-43 | (f64) 7.46039e-322 | (hex) 97
+[TID 002d6f] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002d6f] D/interpreter:  pc: 0x7f4cd2ce80bf ---> movi.64 v0, 1
+[TID 002d6f] D/interpreter:      acc.pri = (i64) 151 | (f32) 2.11596e-43 | (f64) 7.46039e-322 | (hex) 97
+[TID 002d6f] D/interpreter:      v0.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 002d6f] D/interpreter:  pc: 0x7f4cd2ce80c9 ---> ashr2v.64 v0, v0
+[TID 002d6f] D/interpreter:      acc.pri = (i64) 151 | (f32) 2.11596e-43 | (f64) 7.46039e-322 | (hex) 97
+[TID 002d6f] D/interpreter:      v0.pri = (i64) 75 | (f32) 1.05097e-43 | (f64) 3.70549e-322 | (hex) 4b
+[TID 002d6f] D/interpreter:  pc: 0x7f4cd2ce80cd ---> ldai.64 75
+[TID 002d6f] D/interpreter:      acc.pri = (i64) 75 | (f32) 1.05097e-43 | (f64) 3.70549e-322 | (hex) 4b
+[TID 002d6f] D/interpreter:      v0.pri = (i64) 75 | (f32) 1.05097e-43 | (f64) 3.70549e-322 | (hex) 4b
+[TID 002d6f] D/interpreter:  pc: 0x7f4cd2ce80d6 ---> cmp.64 v0
+[TID 002d6f] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002d6f] D/interpreter:      v0.pri = (i64) 75 | (f32) 1.05097e-43 | (f64) 3.70549e-322 | (hex) 4b
+[TID 002d6f] D/interpreter:  pc: 0x7f4cd2ce80d8 ---> jnez 5
+[TID 002d6f] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002d6f] D/interpreter:      v0.pri = (i64) 75 | (f32) 1.05097e-43 | (f64) 3.70549e-322 | (hex) 4b
+[TID 002d6f] D/interpreter:  pc: 0x7f4cd2ce80da ---> ldai 0
+[TID 002d6f] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002d6f] D/interpreter:      v0.pri = (i64) 75 | (f32) 1.05097e-43 | (f64) 3.70549e-322 | (hex) 4b
+[TID 002d6f] D/interpreter:  pc: 0x7f4cd2ce80dc ---> return
+[TID 002d6f] D/interpreter: Invoke exit: _GLOBAL::main

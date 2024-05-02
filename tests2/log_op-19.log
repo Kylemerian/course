@@ -1,0 +1,13 @@
+[TID 00335c] D/interpreter: Invoke entry: _GLOBAL::main
+[TID 00335c] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00335c] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00335c] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00335c] D/interpreter:  pc: 0x7fe570e8a0e7 ---> movi v0, 1
+[TID 00335c] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00335c] D/interpreter:      v0.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 00335c] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00335c] D/interpreter:  pc: 0x7fe570e8a0e9 ---> movi v1, 2
+[TID 00335c] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00335c] D/interpreter:      v0.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 00335c] D/interpreter:      v1.pri = (i64) 2 | (f32) 2.8026e-45 | (f64) 9.88131e-324 | (hex) 2
+[TID 00335c] D/interpreter: Invoke exit: _GLOBAL::main

@@ -2,13 +2,16 @@ def xor_(a, b):
     return a ^ b
 
 def shr_(a, offset):
-    return (a >> offset) & 0xffffffffffffffff
+    return (a >> (offset & 0x3f)) & 0xffffffffffffffff
 
 def ashr_(a, offset):
-    return (a >> offset) & 0xffffffffffffffff
+    return (a >> (offset & 0x3f)) & 0xffffffffffffffff
 
 def shl_(a, offset):
-    return (a << offset) & 0xffffffffffffffff
+    return (a << (offset & 0x3f)) & 0xffffffffffffffff
+
+def not_(a):
+    return -(a + 1)
 
 def new_array_(a):
     return [0 for _ in range(a)]
@@ -32,5 +35,6 @@ def getDictForFuncs():
     functions['sizeof'] = sizeof_
     functions['or_'] = or_
     functions['and_'] = and_
+    functions['not_'] = not_
 
     return functions

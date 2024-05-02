@@ -1,0 +1,22 @@
+[TID 002c0f] D/interpreter: Invoke entry: _GLOBAL::main
+[TID 002c0f] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002c0f] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002c0f] D/interpreter:  pc: 0x7f6669fb60ee ---> fldai.64 4617428107952285286
+[TID 002c0f] D/interpreter:      acc.pri = (i64) 4617428107952285286 | (f32) 2.72008e+23 | (f64) 5.1 | (hex) 4014666666666666
+[TID 002c0f] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002c0f] D/interpreter:  pc: 0x7f6669fb60f7 ---> fmovi.64 v0, 4619792497756654797
+[TID 002c0f] D/interpreter:      acc.pri = (i64) 4617428107952285286 | (f32) 2.72008e+23 | (f64) 5.1 | (hex) 4014666666666666
+[TID 002c0f] D/interpreter:      v0.pri = (i64) 4619792497756654797 | (f32) -1.07374e+08 | (f64) 7.2 | (hex) 401ccccccccccccd
+[TID 002c0f] D/interpreter:  pc: 0x7f6669fb6101 ---> fadd2.64 v0
+[TID 002c0f] D/interpreter:      acc.pri = (i64) 4623113902481840538 | (f32) -1.58819e-23 | (f64) 12.3 | (hex) 402899999999999a
+[TID 002c0f] D/interpreter:      v0.pri = (i64) 4619792497756654797 | (f32) -1.07374e+08 | (f64) 7.2 | (hex) 401ccccccccccccd
+[TID 002c0f] D/interpreter:  pc: 0x7f6669fb6103 ---> fmovi.64 v0, 4623113902481840538
+[TID 002c0f] D/interpreter:      acc.pri = (i64) 4623113902481840538 | (f32) -1.58819e-23 | (f64) 12.3 | (hex) 402899999999999a
+[TID 002c0f] D/interpreter:      v0.pri = (i64) 4623113902481840538 | (f32) -1.58819e-23 | (f64) 12.3 | (hex) 402899999999999a
+[TID 002c0f] D/interpreter:  pc: 0x7f6669fb610d ---> fsub2.64 v0
+[TID 002c0f] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002c0f] D/interpreter:      v0.pri = (i64) 4623113902481840538 | (f32) -1.58819e-23 | (f64) 12.3 | (hex) 402899999999999a
+[TID 002c0f] D/interpreter:  pc: 0x7f6669fb610f ---> sta.64 v0
+[TID 002c0f] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002c0f] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002c0f] D/interpreter: Invoke exit: _GLOBAL::main

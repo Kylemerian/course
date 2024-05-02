@@ -1,0 +1,20 @@
+[TID 002fc1] D/interpreter: Invoke entry: _GLOBAL::main
+[TID 002fc1] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002fc1] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002fc1] D/interpreter:  pc: 0x7f3e337420b4 ---> ldai 28
+[TID 002fc1] D/interpreter:      acc.pri = (i64) 28 | (f32) 3.92364e-44 | (f64) 1.38338e-322 | (hex) 1c
+[TID 002fc1] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002fc1] D/interpreter:  pc: 0x7f3e337420b6 ---> shri 2
+[TID 002fc1] D/interpreter:      acc.pri = (i64) 7 | (f32) 9.80909e-45 | (f64) 3.45846e-323 | (hex) 7
+[TID 002fc1] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002fc1] D/interpreter:  pc: 0x7f3e337420b8 ---> movi v0, 7
+[TID 002fc1] D/interpreter:      acc.pri = (i64) 7 | (f32) 9.80909e-45 | (f64) 3.45846e-323 | (hex) 7
+[TID 002fc1] D/interpreter:      v0.pri = (i64) 7 | (f32) 9.80909e-45 | (f64) 3.45846e-323 | (hex) 7
+[TID 002fc1] D/interpreter:  pc: 0x7f3e337420ba ---> jne v0, 6
+[TID 002fc1] D/interpreter:      acc.pri = (i64) 7 | (f32) 9.80909e-45 | (f64) 3.45846e-323 | (hex) 7
+[TID 002fc1] D/interpreter:      v0.pri = (i64) 7 | (f32) 9.80909e-45 | (f64) 3.45846e-323 | (hex) 7
+[TID 002fc1] D/interpreter:  pc: 0x7f3e337420bd ---> ldai 0
+[TID 002fc1] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002fc1] D/interpreter:      v0.pri = (i64) 7 | (f32) 9.80909e-45 | (f64) 3.45846e-323 | (hex) 7
+[TID 002fc1] D/interpreter:  pc: 0x7f3e337420bf ---> return
+[TID 002fc1] D/interpreter: Invoke exit: _GLOBAL::main

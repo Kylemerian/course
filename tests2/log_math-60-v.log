@@ -1,0 +1,25 @@
+[TID 002b27] D/interpreter: Invoke entry: _GLOBAL::main
+[TID 002b27] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002b27] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002b27] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002b27] D/interpreter:  pc: 0x7fccfc6913d3 ---> movi v0, 21
+[TID 002b27] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002b27] D/interpreter:      v0.pri = (i64) 21 | (f32) 2.94273e-44 | (f64) 1.03754e-322 | (hex) 15
+[TID 002b27] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002b27] D/interpreter:  pc: 0x7fccfc6913d6 ---> ldai 2097152
+[TID 002b27] D/interpreter:      acc.pri = (i64) 2097152 | (f32) 2.93874e-39 | (f64) 1.03613e-317 | (hex) 200000
+[TID 002b27] D/interpreter:      v0.pri = (i64) 21 | (f32) 2.94273e-44 | (f64) 1.03754e-322 | (hex) 15
+[TID 002b27] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002b27] D/interpreter:  pc: 0x7fccfc6913db ---> shr2 v0
+[TID 002b27] D/interpreter:      acc.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 002b27] D/interpreter:      v0.pri = (i64) 21 | (f32) 2.94273e-44 | (f64) 1.03754e-322 | (hex) 15
+[TID 002b27] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002b27] D/interpreter:  pc: 0x7fccfc6913de ---> sta v0
+[TID 002b27] D/interpreter:      acc.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 002b27] D/interpreter:      v0.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 002b27] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002b27] D/interpreter:  pc: 0x7fccfc6913e0 ---> movi v1, 3145728
+[TID 002b27] D/interpreter:      acc.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 002b27] D/interpreter:      v0.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 002b27] D/interpreter:      v1.pri = (i64) 3145728 | (f32) 4.4081e-39 | (f64) 1.5542e-317 | (hex) 300000
+[TID 002b27] D/interpreter: Invoke exit: _GLOBAL::main

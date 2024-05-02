@@ -1,0 +1,26 @@
+[TID 003163] D/interpreter: Invoke entry: _GLOBAL::main
+[TID 003163] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 003163] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 003163] D/interpreter:  pc: 0x7f93c0ec90b6 ---> movi v0, 3
+[TID 003163] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 003163] D/interpreter:      v0.pri = (i64) 3 | (f32) 4.2039e-45 | (f64) 1.4822e-323 | (hex) 3
+[TID 003163] D/interpreter:  pc: 0x7f93c0ec90b8 ---> ldai 7
+[TID 003163] D/interpreter:      acc.pri = (i64) 7 | (f32) 9.80909e-45 | (f64) 3.45846e-323 | (hex) 7
+[TID 003163] D/interpreter:      v0.pri = (i64) 3 | (f32) 4.2039e-45 | (f64) 1.4822e-323 | (hex) 3
+[TID 003163] D/interpreter:  pc: 0x7f93c0ec90ba ---> modu2v v0, v0
+[TID 003163] D/interpreter:      acc.pri = (i64) 7 | (f32) 9.80909e-45 | (f64) 3.45846e-323 | (hex) 7
+[TID 003163] D/interpreter:      v0.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 003163] D/interpreter:  pc: 0x7f93c0ec90be ---> ldai 1
+[TID 003163] D/interpreter:      acc.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 003163] D/interpreter:      v0.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 003163] D/interpreter:  pc: 0x7f93c0ec90c0 ---> ucmp v0
+[TID 003163] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 003163] D/interpreter:      v0.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 003163] D/interpreter:  pc: 0x7f93c0ec90c3 ---> jnez 5
+[TID 003163] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 003163] D/interpreter:      v0.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 003163] D/interpreter:  pc: 0x7f93c0ec90c5 ---> ldai 0
+[TID 003163] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 003163] D/interpreter:      v0.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 003163] D/interpreter:  pc: 0x7f93c0ec90c7 ---> return
+[TID 003163] D/interpreter: Invoke exit: _GLOBAL::main

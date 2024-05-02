@@ -1,0 +1,10 @@
+[TID 00312d] D/interpreter: Invoke entry: _GLOBAL::main
+[TID 00312d] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00312d] D/interpreter:  pc: 0x7f270d3fb0b2 ---> ldai -1
+[TID 00312d] D/interpreter:      acc.pri = (i64) 4294967295 | (f32) -nan | (f64) 2.122e-314 | (hex) ffffffff
+[TID 00312d] D/interpreter:  pc: 0x7f270d3fb0b4 ---> jltz 5
+[TID 00312d] D/interpreter:      acc.pri = (i64) 4294967295 | (f32) -nan | (f64) 2.122e-314 | (hex) ffffffff
+[TID 00312d] D/interpreter:  pc: 0x7f270d3fb0b9 ---> ldai 0
+[TID 00312d] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00312d] D/interpreter:  pc: 0x7f270d3fb0bb ---> return
+[TID 00312d] D/interpreter: Invoke exit: _GLOBAL::main

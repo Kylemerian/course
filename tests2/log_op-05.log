@@ -1,0 +1,8 @@
+[TID 002de2] D/interpreter: Invoke entry: _GLOBAL::main
+[TID 002de2] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002de2] D/interpreter:  pc: 0x7f44d52e80b2 ---> ldai 0
+[TID 002de2] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002de2] D/interpreter:  pc: 0x7f44d52e80b4 ---> jeqz 5
+[TID 002de2] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002de2] D/interpreter:  pc: 0x7f44d52e80b9 ---> return
+[TID 002de2] D/interpreter: Invoke exit: _GLOBAL::main

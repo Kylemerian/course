@@ -1,0 +1,31 @@
+[TID 002deb] D/interpreter: Invoke entry: _GLOBAL::main
+[TID 002deb] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002deb] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002deb] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002deb] D/interpreter:      v2.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002deb] D/interpreter:      v3.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002deb] D/interpreter:  pc: 0x7f5507be73bf ---> movi v0, 16843009
+[TID 002deb] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002deb] D/interpreter:      v0.pri = (i64) 16843009 | (f32) 2.36943e-38 | (f64) 8.32155e-317 | (hex) 1010101
+[TID 002deb] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002deb] D/interpreter:      v2.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002deb] D/interpreter:      v3.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002deb] D/interpreter:  pc: 0x7f5507be73c5 ---> movi v1, 269488144
+[TID 002deb] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002deb] D/interpreter:      v0.pri = (i64) 16843009 | (f32) 2.36943e-38 | (f64) 8.32155e-317 | (hex) 1010101
+[TID 002deb] D/interpreter:      v1.pri = (i64) 269488144 | (f32) 2.84114e-29 | (f64) 1.33145e-315 | (hex) 10101010
+[TID 002deb] D/interpreter:      v2.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002deb] D/interpreter:      v3.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002deb] D/interpreter:  pc: 0x7f5507be73cb ---> movi v2, -1
+[TID 002deb] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002deb] D/interpreter:      v0.pri = (i64) 16843009 | (f32) 2.36943e-38 | (f64) 8.32155e-317 | (hex) 1010101
+[TID 002deb] D/interpreter:      v1.pri = (i64) 269488144 | (f32) 2.84114e-29 | (f64) 1.33145e-315 | (hex) 10101010
+[TID 002deb] D/interpreter:      v2.pri = (i64) 4294967295 | (f32) -nan | (f64) 2.122e-314 | (hex) ffffffff
+[TID 002deb] D/interpreter:      v3.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002deb] D/interpreter:  pc: 0x7f5507be73cd ---> movi v3, 0
+[TID 002deb] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002deb] D/interpreter:      v0.pri = (i64) 16843009 | (f32) 2.36943e-38 | (f64) 8.32155e-317 | (hex) 1010101
+[TID 002deb] D/interpreter:      v1.pri = (i64) 269488144 | (f32) 2.84114e-29 | (f64) 1.33145e-315 | (hex) 10101010
+[TID 002deb] D/interpreter:      v2.pri = (i64) 4294967295 | (f32) -nan | (f64) 2.122e-314 | (hex) ffffffff
+[TID 002deb] D/interpreter:      v3.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002deb] D/interpreter: Invoke exit: _GLOBAL::main

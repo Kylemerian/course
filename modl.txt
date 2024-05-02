@@ -144,6 +144,14 @@ object:fcmp_Frame
   objattr:r1
   objattr:$location
   objattr:$subframe
+object:fcmpl_64_Frame
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:fcmpg_64_Frame
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
 object:cmp_64_Frame
   objattr:r1
   objattr:$location
@@ -274,6 +282,10 @@ object:sub2_64_Frame
   objattr:r1
   objattr:$location
   objattr:$subframe
+object:fsub2_64_Frame
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
 object:mul2_Frame
   objattr:r1
   objattr:$location
@@ -284,6 +296,11 @@ object:mulv_Frame
   objattr:$location
   objattr:$subframe
 object:addv_Frame
+  objattr:r1
+  objattr:r2
+  objattr:$location
+  objattr:$subframe
+object:subv_Frame
   objattr:r1
   objattr:r2
   objattr:$location
@@ -303,7 +320,26 @@ object:andv_Frame
   objattr:r2
   objattr:$location
   objattr:$subframe
+object:shrv_Frame
+  objattr:r1
+  objattr:r2
+  objattr:$location
+  objattr:$subframe
+object:shlv_Frame
+  objattr:r1
+  objattr:r2
+  objattr:$location
+  objattr:$subframe
+object:ashrv_Frame
+  objattr:r1
+  objattr:r2
+  objattr:$location
+  objattr:$subframe
 object:mul2_64_Frame
+  objattr:r1
+  objattr:$location
+  objattr:$subframe
+object:fmul2_64_Frame
   objattr:r1
   objattr:$location
   objattr:$subframe
@@ -512,6 +548,16 @@ object:fsub2v_Frame
   objattr:r2
   objattr:$location
   objattr:$subframe
+object:sub2v_Frame
+  objattr:r1
+  objattr:r2
+  objattr:$location
+  objattr:$subframe
+object:sub2v_64_Frame
+  objattr:r1
+  objattr:r2
+  objattr:$location
+  objattr:$subframe
 object:fsub2v_64_Frame
   objattr:r1
   objattr:r2
@@ -523,6 +569,11 @@ object:mul_Frame
   objattr:$location
   objattr:$subframe
 object:or2v_Frame
+  objattr:r1
+  objattr:r2
+  objattr:$location
+  objattr:$subframe
+object:or2v_64_Frame
   objattr:r1
   objattr:r2
   objattr:$location
@@ -547,6 +598,16 @@ object:ashr2v_Frame
   objattr:r2
   objattr:$location
   objattr:$subframe
+object:shr2v_Frame
+  objattr:r1
+  objattr:r2
+  objattr:$location
+  objattr:$subframe
+object:shr2v_64_Frame
+  objattr:r1
+  objattr:r2
+  objattr:$location
+  objattr:$subframe
 object:ashr2v_64_Frame
   objattr:r1
   objattr:r2
@@ -567,12 +628,22 @@ object:mul2v_64_Frame
   objattr:r2
   objattr:$location
   objattr:$subframe
+object:fmul2v_64_Frame
+  objattr:r1
+  objattr:r2
+  objattr:$location
+  objattr:$subframe
 object:add2v_Frame
   objattr:r1
   objattr:r2
   objattr:$location
   objattr:$subframe
 object:add2v_64_Frame
+  objattr:r1
+  objattr:r2
+  objattr:$location
+  objattr:$subframe
+object:fadd2v_64_Frame
   objattr:r1
   objattr:r2
   objattr:$location
@@ -1138,6 +1209,78 @@ wds:
 actions:
   acc.value := 1
   frame.$location := 0
+fgraph:fcmpl_64
+[fcmpl_64_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.r1)
+  acc.value < frame.r1.value
+wds:
+  valid(frame.r1)
+  valid(acc)
+actions:
+  acc.value := -1
+  frame.$location := 0
+[fcmpl_64_start_finish_2]
+guards:
+  frame.$location = 0
+  valid(frame.r1)
+  acc.value ≥ frame.r1.value
+  acc.value ≤ frame.r1.value
+wds:
+  valid(frame.r1)
+  valid(acc)
+actions:
+  acc.value := 0
+  frame.$location := 0
+[fcmpl_64_start_finish_3]
+guards:
+  frame.$location = 0
+  valid(frame.r1)
+  acc.value ≥ frame.r1.value
+  acc.value > frame.r1.value
+wds:
+  valid(frame.r1)
+  valid(acc)
+actions:
+  acc.value := 1
+  frame.$location := 0
+fgraph:fcmpg_64
+[fcmpg_64_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.r1)
+  acc.value < frame.r1.value
+wds:
+  valid(frame.r1)
+  valid(acc)
+actions:
+  acc.value := -1
+  frame.$location := 0
+[fcmpg_64_start_finish_2]
+guards:
+  frame.$location = 0
+  valid(frame.r1)
+  acc.value ≥ frame.r1.value
+  acc.value ≤ frame.r1.value
+wds:
+  valid(frame.r1)
+  valid(acc)
+actions:
+  acc.value := 0
+  frame.$location := 0
+[fcmpg_64_start_finish_3]
+guards:
+  frame.$location = 0
+  valid(frame.r1)
+  acc.value ≥ frame.r1.value
+  acc.value > frame.r1.value
+wds:
+  valid(frame.r1)
+  valid(acc)
+actions:
+  acc.value := 1
+  frame.$location := 0
 fgraph:cmp_64
 [cmp_64_start_finish_1]
 guards:
@@ -1626,7 +1769,7 @@ guards:
 wds:
   valid(acc)
 actions:
-  acc.value := not(acc.value)
+  acc.value := not_(acc.value)
   frame.$location := 0
 fgraph:not_64
 [not_64_start_finish_1]
@@ -1635,7 +1778,7 @@ guards:
 wds:
   valid(acc)
 actions:
-  acc.value := not(acc.value)
+  acc.value := not_(acc.value)
   frame.$location := 0
 fgraph:add2
 [add2_start_finish_1]
@@ -1703,6 +1846,17 @@ wds:
 actions:
   acc.value := (acc.value-frame.r1.value)%18446744073709551616
   frame.$location := 0
+fgraph:fsub2_64
+[fsub2_64_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.r1)
+wds:
+  valid(frame.r1)
+  valid(acc)
+actions:
+  acc.value := (acc.value-frame.r1.value)%18446744073709551616
+  frame.$location := 0
 fgraph:mul2
 [mul2_start_finish_1]
 guards:
@@ -1737,6 +1891,18 @@ wds:
   valid(frame.r1)
 actions:
   frame.r1.value := (frame.r1.value+frame.r2.value)%2147483648
+  frame.$location := 0
+fgraph:subv
+[subv_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.r1)
+  valid(frame.r2)
+wds:
+  valid(frame.r2)
+  valid(frame.r1)
+actions:
+  frame.r1.value := (frame.r1.value-frame.r2.value)%2147483648
   frame.$location := 0
 fgraph:xorv
 [xorv_start_finish_1]
@@ -1774,8 +1940,55 @@ wds:
 actions:
   frame.r1.value := and_(r1.value,r2.value)%2147483648
   frame.$location := 0
+fgraph:shrv
+[shrv_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.r1)
+  valid(frame.r2)
+wds:
+  valid(frame.r2)
+  valid(frame.r1)
+actions:
+  frame.r1.value := shr(r1.value,r2.value)%2147483648
+  frame.$location := 0
+fgraph:shlv
+[shlv_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.r1)
+  valid(frame.r2)
+wds:
+  valid(frame.r2)
+  valid(frame.r1)
+actions:
+  frame.r1.value := shl(r1.value,r2.value)%2147483648
+  frame.$location := 0
+fgraph:ashrv
+[ashrv_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.r1)
+  valid(frame.r2)
+wds:
+  valid(frame.r2)
+  valid(frame.r1)
+actions:
+  frame.r1.value := ashr(r1.value,r2.value)%2147483648
+  frame.$location := 0
 fgraph:mul2_64
 [mul2_64_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.r1)
+wds:
+  valid(frame.r1)
+  valid(acc)
+actions:
+  acc.value := acc.value*frame.r1.value%18446744073709551616
+  frame.$location := 0
+fgraph:fmul2_64
+[fmul2_64_start_finish_1]
 guards:
   frame.$location = 0
   valid(frame.r1)
@@ -2434,6 +2647,32 @@ wds:
 actions:
   frame.r1.value := acc.value-frame.r2.value
   frame.$location := 0
+fgraph:sub2v
+[sub2v_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.r1)
+  valid(frame.r2)
+wds:
+  valid(frame.r2)
+  valid(acc)
+  valid(frame.r1)
+actions:
+  frame.r1.value := acc.value-frame.r2.value
+  frame.$location := 0
+fgraph:sub2v_64
+[sub2v_64_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.r1)
+  valid(frame.r2)
+wds:
+  valid(frame.r2)
+  valid(acc)
+  valid(frame.r1)
+actions:
+  frame.r1.value := acc.value-frame.r2.value
+  frame.$location := 0
 fgraph:fsub2v_64
 [fsub2v_64_start_finish_1]
 guards:
@@ -2462,6 +2701,19 @@ actions:
   frame.$location := 0
 fgraph:or2v
 [or2v_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.r1)
+  valid(frame.r2)
+wds:
+  valid(frame.r2)
+  valid(acc)
+  valid(frame.r1)
+actions:
+  frame.r1.value := or_(acc.value,r2.value)%2147483648
+  frame.$location := 0
+fgraph:or2v_64
+[or2v_64_start_finish_1]
 guards:
   frame.$location = 0
   valid(frame.r1)
@@ -2525,6 +2777,32 @@ wds:
 actions:
   frame.r1.value := ashr(acc.value,r2.value)%2147483648
   frame.$location := 0
+fgraph:shr2v
+[shr2v_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.r1)
+  valid(frame.r2)
+wds:
+  valid(frame.r2)
+  valid(acc)
+  valid(frame.r1)
+actions:
+  frame.r1.value := shr(acc.value,r2.value)%2147483648
+  frame.$location := 0
+fgraph:shr2v_64
+[shr2v_64_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.r1)
+  valid(frame.r2)
+wds:
+  valid(frame.r2)
+  valid(acc)
+  valid(frame.r1)
+actions:
+  frame.r1.value := shr(acc.value,r2.value)%2147483648
+  frame.$location := 0
 fgraph:ashr2v_64
 [ashr2v_64_start_finish_1]
 guards:
@@ -2577,6 +2855,19 @@ wds:
 actions:
   frame.r1.value := acc.value*frame.r2.value%2147483648
   frame.$location := 0
+fgraph:fmul2v_64
+[fmul2v_64_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.r1)
+  valid(frame.r2)
+wds:
+  valid(frame.r2)
+  valid(acc)
+  valid(frame.r1)
+actions:
+  frame.r1.value := acc.value*frame.r2.value%2147483648
+  frame.$location := 0
 fgraph:add2v
 [add2v_start_finish_1]
 guards:
@@ -2592,6 +2883,19 @@ actions:
   frame.$location := 0
 fgraph:add2v_64
 [add2v_64_start_finish_1]
+guards:
+  frame.$location = 0
+  valid(frame.r1)
+  valid(frame.r2)
+wds:
+  valid(frame.r2)
+  valid(acc)
+  valid(frame.r1)
+actions:
+  frame.r1.value := (acc.value+frame.r2.value)%2147483648
+  frame.$location := 0
+fgraph:fadd2v_64
+[fadd2v_64_start_finish_1]
 guards:
   frame.$location = 0
   valid(frame.r1)
@@ -2770,7 +3074,7 @@ guards:
 wds:
   valid(frame.r1)
 actions:
-  frame.r1._type := i64
+  frame.r1 = frame.r1
   frame.$location := 0
 fgraph:i64toi32
 [i64toi32_start_finish_1]
@@ -2780,7 +3084,6 @@ guards:
 wds:
   valid(frame.r1)
 actions:
-  frame.r1._type := i32
   frame.r1.value := frame.r1.value%2147483648
   frame.$location := 0
 fgraph:i32toi16
@@ -2791,7 +3094,6 @@ guards:
 wds:
   valid(frame.r1)
 actions:
-  frame.r1._type := i16
   frame.r1.value := frame.r1.value%BIT16_DIV
   frame.$location := 0
 fgraph:i16toi32
@@ -2802,7 +3104,7 @@ guards:
 wds:
   valid(frame.r1)
 actions:
-  frame.r1._type := i32
+  frame.r1 = frame.r1
   frame.$location := 0
 fgraph:i32toi8
 [i32toi8_start_finish_1]
@@ -2812,7 +3114,6 @@ guards:
 wds:
   valid(frame.r1)
 actions:
-  frame.r1._type := i8
   frame.r1.value := frame.r1.value%BIT8_DIV
   frame.$location := 0
 fgraph:i32tou8
@@ -2823,7 +3124,6 @@ guards:
 wds:
   valid(frame.r1)
 actions:
-  frame.r1._type := u8
   frame.r1.value := frame.r1.value%BIT8_DIV
   frame.$location := 0
 fgraph:i32tou16
@@ -2834,7 +3134,6 @@ guards:
 wds:
   valid(frame.r1)
 actions:
-  frame.r1._type := u16
   frame.r1.value := frame.r1.value%BIT16_DIV
   frame.$location := 0
 fgraph:u32toi64
@@ -2845,7 +3144,6 @@ guards:
 wds:
   valid(frame.r1)
 actions:
-  frame.r1._type := i64
   frame.$location := 0
 fgraph:u32tou16
 [u32tou16_start_finish_1]
@@ -2855,7 +3153,6 @@ guards:
 wds:
   valid(frame.r1)
 actions:
-  frame.r1._type := u16
   frame.r1.value := frame.r1.value%BIT16_DIV
   frame.$location := 0
 fgraph:u32toi16
@@ -2866,7 +3163,6 @@ guards:
 wds:
   valid(frame.r1)
 actions:
-  frame.r1._type := i16
   frame.r1.value := frame.r1.value%BIT16_DIV
   frame.$location := 0
 fgraph:u32tou8
@@ -2877,7 +3173,6 @@ guards:
 wds:
   valid(frame.r1)
 actions:
-  frame.r1._type := u8
   frame.r1.value := frame.r1.value%BIT8_DIV
   frame.$location := 0
 fgraph:u32toi8
@@ -2888,7 +3183,6 @@ guards:
 wds:
   valid(frame.r1)
 actions:
-  frame.r1._type := i8
   frame.r1.value := frame.r1.value%BIT8_DIV
   frame.$location := 0
 fgraph:u64toi32
@@ -2899,7 +3193,6 @@ guards:
 wds:
   valid(frame.r1)
 actions:
-  frame.r1._type := i32
   frame.r1.value := frame.r1.value%2147483648
   frame.$location := 0
 fgraph:u64tou32
@@ -2910,7 +3203,6 @@ guards:
 wds:
   valid(frame.r1)
 actions:
-  frame.r1._type := u32
   frame.r1.value := frame.r1.value%2147483648
   frame.$location := 0
 fgraph:i32tou1

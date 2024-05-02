@@ -1,0 +1,41 @@
+[TID 0030af] D/interpreter: Invoke entry: _GLOBAL::main
+[TID 0030af] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0030af] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0030af] D/interpreter:  pc: 0x7efe1af630ba ---> ldai -1
+[TID 0030af] D/interpreter:      acc.pri = (i64) 4294967295 | (f32) -nan | (f64) 2.122e-314 | (hex) ffffffff
+[TID 0030af] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0030af] D/interpreter:  pc: 0x7efe1af630bc ---> jgez 7
+[TID 0030af] D/interpreter:      acc.pri = (i64) 4294967295 | (f32) -nan | (f64) 2.122e-314 | (hex) ffffffff
+[TID 0030af] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0030af] D/interpreter:  pc: 0x7efe1af630be ---> jmp 36021
+[TID 0030af] D/interpreter:      acc.pri = (i64) 4294967295 | (f32) -nan | (f64) 2.122e-314 | (hex) ffffffff
+[TID 0030af] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0030af] D/interpreter:  pc: 0x7efe1af6bd73 ---> ldai 42
+[TID 0030af] D/interpreter:      acc.pri = (i64) 42 | (f32) 5.88545e-44 | (f64) 2.07508e-322 | (hex) 2a
+[TID 0030af] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0030af] D/interpreter:  pc: 0x7efe1af6bd75 ---> movi v0, 42
+[TID 0030af] D/interpreter:      acc.pri = (i64) 42 | (f32) 5.88545e-44 | (f64) 2.07508e-322 | (hex) 2a
+[TID 0030af] D/interpreter:      v0.pri = (i64) 42 | (f32) 5.88545e-44 | (f64) 2.07508e-322 | (hex) 2a
+[TID 0030af] D/interpreter:  pc: 0x7efe1af6bd78 ---> jne v0, 8
+[TID 0030af] D/interpreter:      acc.pri = (i64) 42 | (f32) 5.88545e-44 | (f64) 2.07508e-322 | (hex) 2a
+[TID 0030af] D/interpreter:      v0.pri = (i64) 42 | (f32) 5.88545e-44 | (f64) 2.07508e-322 | (hex) 2a
+[TID 0030af] D/interpreter:  pc: 0x7efe1af6bd7b ---> jmp -36024
+[TID 0030af] D/interpreter:      acc.pri = (i64) 42 | (f32) 5.88545e-44 | (f64) 2.07508e-322 | (hex) 2a
+[TID 0030af] D/interpreter:      v0.pri = (i64) 42 | (f32) 5.88545e-44 | (f64) 2.07508e-322 | (hex) 2a
+[TID 0030af] D/interpreter:  pc: 0x7efe1af630c3 ---> ldai 42
+[TID 0030af] D/interpreter:      acc.pri = (i64) 42 | (f32) 5.88545e-44 | (f64) 2.07508e-322 | (hex) 2a
+[TID 0030af] D/interpreter:      v0.pri = (i64) 42 | (f32) 5.88545e-44 | (f64) 2.07508e-322 | (hex) 2a
+[TID 0030af] D/interpreter:  pc: 0x7efe1af630c5 ---> movi v0, 42
+[TID 0030af] D/interpreter:      acc.pri = (i64) 42 | (f32) 5.88545e-44 | (f64) 2.07508e-322 | (hex) 2a
+[TID 0030af] D/interpreter:      v0.pri = (i64) 42 | (f32) 5.88545e-44 | (f64) 2.07508e-322 | (hex) 2a
+[TID 0030af] D/interpreter:  pc: 0x7efe1af630c8 ---> jlt v0, 8
+[TID 0030af] D/interpreter:      acc.pri = (i64) 42 | (f32) 5.88545e-44 | (f64) 2.07508e-322 | (hex) 2a
+[TID 0030af] D/interpreter:      v0.pri = (i64) 42 | (f32) 5.88545e-44 | (f64) 2.07508e-322 | (hex) 2a
+[TID 0030af] D/interpreter:  pc: 0x7efe1af630cb ---> jmp 36021
+[TID 0030af] D/interpreter:      acc.pri = (i64) 42 | (f32) 5.88545e-44 | (f64) 2.07508e-322 | (hex) 2a
+[TID 0030af] D/interpreter:      v0.pri = (i64) 42 | (f32) 5.88545e-44 | (f64) 2.07508e-322 | (hex) 2a
+[TID 0030af] D/interpreter:  pc: 0x7efe1af6bd80 ---> ldai 0
+[TID 0030af] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 0030af] D/interpreter:      v0.pri = (i64) 42 | (f32) 5.88545e-44 | (f64) 2.07508e-322 | (hex) 2a
+[TID 0030af] D/interpreter:  pc: 0x7efe1af6bd82 ---> return
+[TID 0030af] D/interpreter: Invoke exit: _GLOBAL::main

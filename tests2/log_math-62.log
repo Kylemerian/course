@@ -1,0 +1,25 @@
+[TID 00301f] D/interpreter: Invoke entry: _GLOBAL::main
+[TID 00301f] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00301f] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00301f] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00301f] D/interpreter:  pc: 0x7fb3785982c5 ---> movi v0, 21
+[TID 00301f] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00301f] D/interpreter:      v0.pri = (i64) 21 | (f32) 2.94273e-44 | (f64) 1.03754e-322 | (hex) 15
+[TID 00301f] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00301f] D/interpreter:  pc: 0x7fb3785982c8 ---> ldai 2097152
+[TID 00301f] D/interpreter:      acc.pri = (i64) 2097152 | (f32) 2.93874e-39 | (f64) 1.03613e-317 | (hex) 200000
+[TID 00301f] D/interpreter:      v0.pri = (i64) 21 | (f32) 2.94273e-44 | (f64) 1.03754e-322 | (hex) 15
+[TID 00301f] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00301f] D/interpreter:  pc: 0x7fb3785982cd ---> shr2 v0
+[TID 00301f] D/interpreter:      acc.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 00301f] D/interpreter:      v0.pri = (i64) 21 | (f32) 2.94273e-44 | (f64) 1.03754e-322 | (hex) 15
+[TID 00301f] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00301f] D/interpreter:  pc: 0x7fb3785982d0 ---> sta v0
+[TID 00301f] D/interpreter:      acc.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 00301f] D/interpreter:      v0.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 00301f] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00301f] D/interpreter:  pc: 0x7fb3785982d2 ---> movi v1, 0
+[TID 00301f] D/interpreter:      acc.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 00301f] D/interpreter:      v0.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 00301f] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 00301f] D/interpreter: Invoke exit: _GLOBAL::main

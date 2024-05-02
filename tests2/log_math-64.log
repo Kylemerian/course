@@ -1,0 +1,25 @@
+[TID 003419] D/interpreter: Invoke entry: _GLOBAL::main
+[TID 003419] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 003419] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 003419] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 003419] D/interpreter:  pc: 0x7fb2256082ef ---> movi v0, 21
+[TID 003419] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 003419] D/interpreter:      v0.pri = (i64) 21 | (f32) 2.94273e-44 | (f64) 1.03754e-322 | (hex) 15
+[TID 003419] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 003419] D/interpreter:  pc: 0x7fb2256082f2 ---> ldai 2097152
+[TID 003419] D/interpreter:      acc.pri = (i64) 2097152 | (f32) 2.93874e-39 | (f64) 1.03613e-317 | (hex) 200000
+[TID 003419] D/interpreter:      v0.pri = (i64) 21 | (f32) 2.94273e-44 | (f64) 1.03754e-322 | (hex) 15
+[TID 003419] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 003419] D/interpreter:  pc: 0x7fb2256082f7 ---> shr2 v0
+[TID 003419] D/interpreter:      acc.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 003419] D/interpreter:      v0.pri = (i64) 21 | (f32) 2.94273e-44 | (f64) 1.03754e-322 | (hex) 15
+[TID 003419] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 003419] D/interpreter:  pc: 0x7fb2256082fa ---> sta v0
+[TID 003419] D/interpreter:      acc.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 003419] D/interpreter:      v0.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 003419] D/interpreter:      v1.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 003419] D/interpreter:  pc: 0x7fb2256082fc ---> movi v1, -1
+[TID 003419] D/interpreter:      acc.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 003419] D/interpreter:      v0.pri = (i64) 1 | (f32) 1.4013e-45 | (f64) 4.94066e-324 | (hex) 1
+[TID 003419] D/interpreter:      v1.pri = (i64) 4294967295 | (f32) -nan | (f64) 2.122e-314 | (hex) ffffffff
+[TID 003419] D/interpreter: Invoke exit: _GLOBAL::main
