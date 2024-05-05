@@ -1,0 +1,11 @@
+[TID 003389] D/interpreter: Invoke entry: _GLOBAL::main
+[TID 003389] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 003389] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 003389] D/interpreter:  pc: 0x7f5ee57540bd ---> u32tou1
+[TID 003389] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 003389] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 003389] D/interpreter:  pc: 0x7f5ee57540bf ---> movi v0, 11189196
+[TID 003389] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 003389] D/interpreter:      v0.pri = (i64) 11189196 | (f32) 1.56794e-38 | (f64) 5.5282e-317 | (hex) aabbcc
+[TID 003389] D/interpreter:  pc: 0x7f5ee57540ca ---> return
+[TID 003389] D/interpreter: Invoke exit: _GLOBAL::main
