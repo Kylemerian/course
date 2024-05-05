@@ -1,0 +1,19 @@
+[TID 002c96] D/interpreter: Invoke entry: _GLOBAL::main
+[TID 002c96] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002c96] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002c96] D/interpreter:  pc: 0x7f7f757db0f0 ---> fldai.64 4617315517961601024
+[TID 002c96] D/interpreter:      acc.pri = (i64) 4617315517961601024 | (f32) 0 | (f64) 5 | (hex) 4014000000000000
+[TID 002c96] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002c96] D/interpreter:  pc: 0x7f7f757db0f9 ---> fmovi v0, 4612811918334230528
+[TID 002c96] D/interpreter:      acc.pri = (i64) 4617315517961601024 | (f32) 0 | (f64) 5 | (hex) 4014000000000000
+[TID 002c96] D/interpreter:      v0.pri = (i64) 4612811918334230528 | (f32) 0 | (f64) 2.5 | (hex) 4004000000000000
+[TID 002c96] D/interpreter:  pc: 0x7f7f757db103 ---> fmul2v.64 v0, v0
+[TID 002c96] D/interpreter:      acc.pri = (i64) 4617315517961601024 | (f32) 0 | (f64) 5 | (hex) 4014000000000000
+[TID 002c96] D/interpreter:      v0.pri = (i64) 4623226492472524800 | (f32) 0 | (f64) 12.5 | (hex) 4029000000000000
+[TID 002c96] D/interpreter:  pc: 0x7f7f757db106 ---> fldai.64 4623226492472524800
+[TID 002c96] D/interpreter:      acc.pri = (i64) 4623226492472524800 | (f32) 0 | (f64) 12.5 | (hex) 4029000000000000
+[TID 002c96] D/interpreter:      v0.pri = (i64) 4623226492472524800 | (f32) 0 | (f64) 12.5 | (hex) 4029000000000000
+[TID 002c96] D/interpreter:  pc: 0x7f7f757db10f ---> fsub2v.64 v0, v0
+[TID 002c96] D/interpreter:      acc.pri = (i64) 4623226492472524800 | (f32) 0 | (f64) 12.5 | (hex) 4029000000000000
+[TID 002c96] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002c96] D/interpreter: Invoke exit: _GLOBAL::main

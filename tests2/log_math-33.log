@@ -1,0 +1,26 @@
+[TID 002b02] D/interpreter: Invoke entry: _GLOBAL::main
+[TID 002b02] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002b02] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002b02] D/interpreter:  pc: 0x7f7180d440b4 ---> ldai.64 5
+[TID 002b02] D/interpreter:      acc.pri = (i64) 5 | (f32) 7.00649e-45 | (f64) 2.47033e-323 | (hex) 5
+[TID 002b02] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002b02] D/interpreter:  pc: 0x7f7180d440bd ---> movi.64 v0, 2
+[TID 002b02] D/interpreter:      acc.pri = (i64) 5 | (f32) 7.00649e-45 | (f64) 2.47033e-323 | (hex) 5
+[TID 002b02] D/interpreter:      v0.pri = (i64) 2 | (f32) 2.8026e-45 | (f64) 9.88131e-324 | (hex) 2
+[TID 002b02] D/interpreter:  pc: 0x7f7180d440c7 ---> sub2 v0
+[TID 002b02] D/interpreter:      acc.pri = (i64) 3 | (f32) 4.2039e-45 | (f64) 1.4822e-323 | (hex) 3
+[TID 002b02] D/interpreter:      v0.pri = (i64) 2 | (f32) 2.8026e-45 | (f64) 9.88131e-324 | (hex) 2
+[TID 002b02] D/interpreter:  pc: 0x7f7180d440c9 ---> movi.64 v0, 3
+[TID 002b02] D/interpreter:      acc.pri = (i64) 3 | (f32) 4.2039e-45 | (f64) 1.4822e-323 | (hex) 3
+[TID 002b02] D/interpreter:      v0.pri = (i64) 3 | (f32) 4.2039e-45 | (f64) 1.4822e-323 | (hex) 3
+[TID 002b02] D/interpreter:  pc: 0x7f7180d440d3 ---> cmp.64 v0
+[TID 002b02] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002b02] D/interpreter:      v0.pri = (i64) 3 | (f32) 4.2039e-45 | (f64) 1.4822e-323 | (hex) 3
+[TID 002b02] D/interpreter:  pc: 0x7f7180d440d5 ---> jnez 5
+[TID 002b02] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002b02] D/interpreter:      v0.pri = (i64) 3 | (f32) 4.2039e-45 | (f64) 1.4822e-323 | (hex) 3
+[TID 002b02] D/interpreter:  pc: 0x7f7180d440d7 ---> ldai 0
+[TID 002b02] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002b02] D/interpreter:      v0.pri = (i64) 3 | (f32) 4.2039e-45 | (f64) 1.4822e-323 | (hex) 3
+[TID 002b02] D/interpreter:  pc: 0x7f7180d440d9 ---> return
+[TID 002b02] D/interpreter: Invoke exit: _GLOBAL::main

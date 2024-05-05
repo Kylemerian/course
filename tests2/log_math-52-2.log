@@ -1,0 +1,20 @@
+[TID 002fde] D/interpreter: Invoke entry: _GLOBAL::main
+[TID 002fde] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002fde] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002fde] D/interpreter:  pc: 0x7f47fc3210b4 ---> ldai.64 -9223372036854775808
+[TID 002fde] D/interpreter:      acc.pri = (i64) -9223372036854775808 | (f32) 0 | (f64) -0 | (hex) 8000000000000000
+[TID 002fde] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002fde] D/interpreter:  pc: 0x7f47fc3210bd ---> movi.64 v0, -1
+[TID 002fde] D/interpreter:      acc.pri = (i64) -9223372036854775808 | (f32) 0 | (f64) -0 | (hex) 8000000000000000
+[TID 002fde] D/interpreter:      v0.pri = (i64) -1 | (f32) -nan | (f64) -nan | (hex) ffffffffffffffff
+[TID 002fde] D/interpreter:  pc: 0x7f47fc3210c7 ---> mod2 v0
+[TID 002fde] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002fde] D/interpreter:      v0.pri = (i64) -1 | (f32) -nan | (f64) -nan | (hex) ffffffffffffffff
+[TID 002fde] D/interpreter:  pc: 0x7f47fc3210c9 ---> movi.64 v0, 0
+[TID 002fde] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002fde] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002fde] D/interpreter:  pc: 0x7f47fc3210d3 ---> cmp.64 v0
+[TID 002fde] D/interpreter:      acc.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002fde] D/interpreter:      v0.pri = (i64) 0 | (f32) 0 | (f64) 0 | (hex) 0
+[TID 002fde] D/interpreter:  pc: 0x7f47fc3210d5 ---> return
+[TID 002fde] D/interpreter: Invoke exit: _GLOBAL::main

@@ -7,7 +7,7 @@
 [TID 00330b] D/interpreter:  pc: 0x7f1fc53750bd ---> movi.64 v0, 7
 [TID 00330b] D/interpreter:      acc.pri = (i64) 5 | (f32) 7.00649e-45 | (f64) 2.47033e-323 | (hex) 5
 [TID 00330b] D/interpreter:      v0.pri = (i64) 7 | (f32) 9.80909e-45 | (f64) 3.45846e-323 | (hex) 7
-[TID 00330b] D/interpreter:  pc: 0x7f1fc53750c7 ---> mul2.64 v0
+[TID 00330b] D/interpreter:  pc: 0x7f1fc53750c7 ---> mul2 v0
 [TID 00330b] D/interpreter:      acc.pri = (i64) 35 | (f32) 4.90454e-44 | (f64) 1.72923e-322 | (hex) 23
 [TID 00330b] D/interpreter:      v0.pri = (i64) 7 | (f32) 9.80909e-45 | (f64) 3.45846e-323 | (hex) 7
 [TID 00330b] D/interpreter:  pc: 0x7f1fc53750c9 ---> movi.64 v0, 35
